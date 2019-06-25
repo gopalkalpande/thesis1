@@ -1,0 +1,16 @@
+%\section{Abstract}
+Social networks are modeled as graphs with nodes representing individuals and edges denoting interactions between the individuals. 
+A community is defined as a subgraph with dense internal connections and sparse external connections. Many heuristic algorithms have been proposed 
+in the literature for disjoint community detection. Nodes that belong to more than one community form overlapping regions between communities. 
+In this thesis, we proposed two novel overlapping community discovery algorithms based on the idea of consensus clustering. The first algorithm  
+defines core members of  a community as  nodes that will be  co-clustered by all the algorithms as belonging to one community. The rest of the nodes,
+unless on the periphery are potentially in the overlapping regions of communities. The second algorithm tries to retrieve overlapping nodes directly 
+based on connectivity consensus. The intuition behind this algorithm is that the neighbours of an overlapping node most probably belong to  different 
+communities. Here again the 'overlappingness' of a node is decided based on the consensus arrived at by majority of the community discovery algorithms. 
+The two algorithms are implemented and tested on many benchmark data sets for community discovery. The algorithms successfully detected overlapping nodes 
+that can be verified visually for small networks. Since overlapping node information is not available for benchmark networks, we designed two  additional 
+data sets joining friendship networks of two friends using their individual facebook  data. It is shown that both the algorithms retrieve friends who have 
+high degree of interactions with many other friends as overlapping nodes. These nodes are not merely those that belong to intersection of two communities 
+but belong to common regions of many hidden communities that are discovered by these algorithms which could not have been inferred easily.
+
+%As part of these projects we expect the students to develop some of the existing schemes and, if possible, to come up with new schemes realizing the compartmented access structures.

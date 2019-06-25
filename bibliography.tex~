@@ -1,0 +1,75 @@
+\begin{thebibliography}{1}
+		\bibliographystyle{ieeetr} 
+		\footnotesize
+		
+		\bibitem{influencemaximization}
+		W. Chen, Y. Wang, and S. Yang. Efficient influence maximization in social networks. In Proceedings of the 15th ACM SIGKDD Conference on Knowledge Discovery and Data Mining, 2009.
+		
+		\bibitem{M.E.J.Newman}
+		M. E. J.Newman, Detecting community structure in networks. \textit{European Physical Journal} B 38: 321-330(2004).
+		
+		\bibitem{influencespread}
+		 D. Kempe, J. Kleinberg, and E. Tardos. Maximizing the spread of influence through a social network. In Proc. of the ninth ACM SIGKDD international conference on Knowledge discovery and data mining. ACM, 2003.
+		
+		\bibitem{overlapdefinition}
+		G. Palla, I. Derényi, I. Farkas, and T. Vicsek, “Uncovering the Overlapping Community Structure of Complex Networks in
+Nature and Society,” Nature, http://dx.doi.org/10.1038/nature 03607, vol. 435, no. 7043, pp. 814-818, 2005.
+		
+		\bibitem{Girvan&Newman}
+		M. Girvan and M. E. J. Newman, Community structure in social and biological networks. \textit{ Proc. Natl. Acad. Sci.USA} 99, 7821–7826 (2002).		
+		
+		\bibitem{Edgebetweenness} 
+		U. Brandes, A faster algorithm for betweenness centrality. \textit{Journal of Mathematical Sociology} 25, 163–177(2001).
+		
+		\bibitem{CommunityGroudTruth}
+		 J. Yang and J. Leskovec. Defining and evaluating network communities based on ground-truth. In \textit{ICDM}, (2012).
+		
+		\bibitem{OverlapBySeedSet}
+		  J. J. Whang, D. F. Gleich, and I. S. Dhillon. Overlapping community detection using seed set expansion. In \textit{CIKM}, (2013).   
+		  
+		 \bibitem{OverlapSBMF}
+		 Zhang Z-Y, Wang Y, Ahn Y-Y (2013) Overlapping community detection in complex networks using symmetric binary matrix factorization. Physical Review E 87: 062803. doi: 10.1103/physreve.87.062803 
+
+		\bibitem{OverlapByCONGA}
+		S. Gregory. An algorithm to find overlapping community structure in networks. In PKDD, 2007.
+		
+		\bibitem{CommStructDetection}
+		 B. Yan and S. Gregory, Detecting community structure in networks using edge prediction methods,\textit{Journal of Statistical and Mechanical}, P09008 (2012).
+		 
+		 \bibitem{consensusclustering}
+		  A. Goder and V. Filkov. Consensus clustering algorithms: Comparison and renement. In ALENEX '08: Proceedings of the Workshop on Algorithm Engineering and Experiments. SIAM, 2008.
+		 
+		 \bibitem{ZacharyDataset}
+		 Zachary W. (1977). An information flow model for conflict and fission in small groups. Journal of Anthropological Research, 33, 452-473.
+		 
+		 \bibitem{GRQDataset}
+		 J. Leskovec, J. Kleinberg and C. Faloutsos. Graph Evolution: Densification and Shrinking Diameters. ACM Transactions on Knowledge Discovery from Data (ACM TKDD), 1(1), 2007.
+		 
+		 \bibitem{Dolphin}		 
+		 D. Lusseau, K. Schneider, O. J. Boisseau, P. Haase, E. Slooten and S. M. Dawson, Behavioural ecology and sociobiology 54, 396-405 (2003).
+		 
+		 \bibitem{syntheticdataset}
+		 L. Tang, X. Wang, and H. Liu. Community detection via heterogeneous interaction analysis. Data Mining and Knowledge Discovery, 25:1–33, 2012.
+		 
+		 \bibitem{googleimage}
+		 Images are taken from google images.
+		 
+		 \bibitem{rstudioimage}
+		 Images are drawn in a software package called \emph{RStudio}.
+		 
+		 \bibitem{nphardurl}
+		 \url{http://www.dcs.fmph.uniba.sk/~fduris/VKTI/3color_HamCycle.pdf}
+		 
+		 \bibitem{modularityurl}
+		 \url{http://en.wikipedia.org/wiki/Modularity_\%28networks\%29#cite_note-config-3}
+		 
+		 \bibitem{dendrogramurl}
+		 \url{http://en.wikipedia.org/wiki/Dendrogram}
+		 
+		 \bibitem{rstudiourl}
+		 \url{http://www.rstudio.com/}
+		 
+		 \bibitem{deeplearningurl}
+		 \url{http://en.wikipedia.org/wiki/Deep_learning}
+		
+\end{thebibliography}

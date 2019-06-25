@@ -1,0 +1,104 @@
+
+%%SDB Put some intro here as well as what will be described in this chapter.
+
+In this chapter we describe a few of the algorithms for community discovery whose knowledge we assume  in the dissertation. The implementation of these  algorithms is available in a software package called {\emph RStudio} \cite{RStudio}. We also use the package {\emph iGraph} available with RStudio for carrying out the necessary statistical analysis. A few measures that are commonly used for community discovery algorithms are first defined. 
+
+A few algorithms that have been proposed in the literature  for discovering overlapping communities are also discussed. 
+
+%efine about community ground-truth information proposed by Yang and Leskovec in a paper\cite{CommunityGroudTruth}. Finally we explain the literature survey that we did on three overlapping community discovery algorithms, they are Seed set expansion method\cite{OverlapBySeedSet}, Nonnegative binary matrix factorization\cite{OverlapByNBMF} and CONGA method\cite{OverlapByCONGA}.
+
+\section{Centrality Measures}
+	There are two centrality measures along with a measure called modularity that are mostly used for community discovery in social networks. These are described below. Let $G = (V,E)$ containing $n$ vertices  be the graph underlying the social network and let adjacency matrix of $G$ be  $A=(a_{ij})$.
+	\subsection{Degree Centrality}
+		Degree centrality is a measure that involves simply the  the number of neighbours of a  node has or the number of links a node makes in the network. Degree centrality of a node $x$ is denoted as $C_D(x)$, and can be used as an indicator of the measure of a network's interconnectedness. 
+		\begin{center}
+		$C_D(x)=\sum_{i=1}^{n}(a_{ix})$ \\
+		
+		\end{center}
+		
+		Time complexity of degree centrality for $n$ vertices is $\bigcirc(n)$.
+	
+	\subsection{Betweenness centrality}
+		There are two types of betweenness centralities: vertex betweenness centrality and edge betweenness centrality that compute the number of times a node or edge respectively act as a bridge along the shortest path between two othe vertices. Most commonly used measure is  edge betweenness centrality $C_B(xy)$ which is computed as follows:
+		\begin{itemize}
+		\item For each vertex $v\in V$, compute shortest paths to all the other vertices in $V$. 
+		\item  Determine the fraction of shortest paths that pass through as intermediate edge $(u,v)\in E$. 
+		
+			$$C_B(xy)=\sum_{(u,v)\in E}\frac{\sigma_{uv}(xy)}{\sigma_{uv}}$$
+		
+		where $\sigma_{uv}$ is the total number of shortest paths from node $u$ to $v$, and $\sigma_{uv}(xy)$ is the number of shortest paths that pass through the edge $(x,y)$.
+		
+		\end{itemize}
+		Time complexity for betweenness centrality for $n$ vertices and $m$ edges is $\bigcirc(mn)$. 
+		 
+  \subsection{Modularity}\label{modularity} %SDB Rewrite the definition properly
+  %Let $S$ be a subset of nodes in $V$. Then modularity 
+  $f(S)=\frac{1}{4}(m_s-E(m_s))$ is the difference between $m_s$, the number of edges between nodes in $S$ and $E(m_s)$, the expected number of such edges in a random graph with identical degree sequence.
+		
+%%%SDB Complete the definition	
+
+\section{Algorithms for Community Discovery}
+	There are nine community discovery algorithms available in a software package called {\bf RSudio}  These are Edge betweenness, Fastgreedy, Infomap, Label propagation, Leading eigenvector, Multi level, Optimal, Spinglass, Walktrap algorithms. Among these six algorithms are described below.
+
+	\subsection{Girvan-Newman  Algorithm\cite{Edgebetweenness}}  In this algorithm, the edges will be removed in the decreasing order of their edge betweenness scores.
+		\begin{algorithm}[H]
+			1. Calculate betweenness score for all edges in the network \\ 
+			2. Find the highest score edge and remove it from the network \\ 
+			3. Recalculate betweenness for all remaining edges \\ 
+			4. Repeat from step 2 
+		\end{algorithm}
+
+	\subsection{Fastgreedy Algorithm}
+		Fastgreedy algorithm is a bottom-up approach. It will optimize a quality function modularity(defined in section\ref{modularity}) in a greedy manner. In Fastgreedy algorithm initially each vertex belongs to a separate community, then communities are merged iteratively such that each merge is locally optimal (i.e. yields the largest increase in the current modularity value). The algorithm runs until it is not possible to increase modularity value any more, so it gives grouping as well as dendrogram.  It suffers from a problem called resolution limit that means communities below a given size threshold (depending on the number of nodes and edges) will always be merged with neighbouring communities..
+		 
+		 \textbf{Dendrogram: \label{dendrogram}\cite{dendrogramurl}}A dendrogram is a tree diagram frequently used to illustrate the arrangement of the clusters produced by hierarchical clustering. Dendrograms are often used in computational biology to illustrate the clustering of genes or samples.		
+	
+	\subsection{Label Propagation Algorithm}
+		Label Propagation algorithm is a simple approach in which every node is assigned one of $k$ labels. The method then proceeds iteratively and re-assigns labels to nodes in a way that each node takes the most frequent label of its neighbors in a synchronous manner. The method stops when the label of each node is one of the most frequent labels in its neighborhood. This algorithm is very fast, but it gives different results based on the initial configuration (which is decided randomly). So that this method should run large number of times (may be hundreds of times)  and then build a consensus labeling, which could be tedious.
+		
+	\subsection{Leading Eigenvector Algorithm}
+		Leading Eigenvector algorithm is a top-down hierarchical approach that optimizes the modularity function. In each step, the graph is split into two parts in a way that the separation itself yields a significant increase in the modularity. The split is determined by evaluating the leading eigenvector of the so-called modularity matrix, and there is also a condition to stop which prevents tightly connected groups to be split further. Due to the eigenvector calculations involved, it might not work on degenerate graphs where the ARPACK eigenvector solver is unstable. On nondegenerate graphs, it is likely to yield a higher modularity score than the fast greedy method.	
+	
+	\subsection{Spinglass Algorithm}
+		In this algorithm each entity (i.e. vertex) can be in one of $c$ spin states, and the interactions (i.e. edges) specify which pairs of vertices would prefer to stay in the same spin state and which ones prefer to have different spin states. The model is then simulated for a given number of steps, and the spin states of the particles in the end dene the communities. The steps are as follows,
+		
+		1) There will never be more than $c$ communities in the end, it is possible to set the $c$ value as high as 200, which will be enough for a purpose.
+		
+		2) There may be less than $c$ communities at the end,  because some of the spin states may become empty.
+		
+		3)  It is not guaranteed that nodes in completely disconnected parts of the networks have different spin states. This is more likely to be a problem for disconnected graphs only, so there is no problem in that. 
+	
+	\subsection{Walktrap Algorithm}
+		Walktrap algorithm is an approach based on random walks. The idea is that if you perform random walks on the graph, then the walks are more likely to stay within the same community because there are only a few edges that lead outside a given community. Walktrap algorithm runs short random walks of 3-4-5 steps it depends on one of its parameters and uses the results of these random walks to merge separate communities in a bottom-up manner like fastgreedy algorithm. Again the modularity score can be used to select where to cut the dendrogram(defined in section\ref{dendrogram}).
+				
+			
+
+\section{Overlapping Community Discovery }
+	Details of some of the recent overlapping community discovery algorithms, viz, Seed set expansion method of Wang et al.\cite{OverlapBySeedSet},  CONGA approach of S.Gregory\cite{} and  a Nonnegative matrix factorization approach of Zhang et al.\cite{} are described here. 
+
+	\subsection{Seed Set Expansion Method}
+	
+			This method contains $four$ phases, Filtering phase, Seeding phase, Seed set expansion phase and Propagation phase.
+		
+		\begin{itemize}
+		
+			\item \textbf{Filtering Phase: }The goal of the filtering phase is to identify regions of the graph where an algorithmic solution is required to identify the overlapping clusters. In this phase the graph (or network) is divided into clusters based on biconnectivity. A biconnected component with highest number of nodes is considered biconnected core.
+			
+			\item \textbf{Seeding Phase: }Seeding phase finds seeds by using two methods, Grauclus centers and Spread hubs. In graclus centers the graph partitioning is done by high quality and efficient approach with fairly small conductance, that is to produce better boundaries between partitions. In Spread hubs method we find the seeds which are in boundaries with high connectivity with other clusters.
+			
+			\item \textbf{Seed Set Expansion Phase: }In seed set expansion phase, we expand the seed sets using a personalized PageRank clustering scheme.
+			
+			\item \textbf{Propagation Phase: } Finally, in Propagation phase, the communities are further expanded to the regions that were removed in the filtering phase.
+		\end{itemize}
+		
+		\subsection{CONGA Approach \cite{OverlapByCONGA}}	
+		
+	\subsection{A Nonnegative Matrix Factorizaction Approach \cite{OverlapByNBMF}}
+	
+	
+	
+	
+		
+%sdb:Summarize this paper. Two more papers on overlapping community need to be  summarized.
+%Write what you are going to do in the next chaper		
+	

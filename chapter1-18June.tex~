@@ -1,0 +1,37 @@
+%\section{Introduction}
+Social networks are modeled as graphs in which nodes represent the individuals and edges represent interactions between  nodes. Many problems have been proposed on social networks regarding influence maximization\cite{influencemaximization}, community discovery\cite{M.E.J.Newman}, influence spread\cite{influencespread} etc. These problems have been found to have many applications to real-world problems like finding the pathways of virus spread, to find influential customers in the online marketing scenario, to find groups of nodes that share common properties etc. In this thesis we are interested in exploring the  community discovery algorithms with special focus on overlapping communities. It should be noted that community discovery problem is NP-hard\cite{nphardurl}.
+
+\section{Community \cite{M.E.J.Newman}}
+
+	Community is defined as a sub graph with dense internal connections and sparse external connections with other sub graphs. 
+	\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=7cm,height=5cm]{figures/community.jpeg}	
+	\caption{Network with rounded dots as communities}
+	\label{fig:communities}
+	\end{center}
+	\end{figure}
+	
+	
+\section{Overlapping Community \cite{overlapdefinition}}
+
+	Overlapping community is a region where there are some nodes which fall into more than one community.  
+	
+	\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=10cm,height=7cm]{figures/overlap.png}
+		
+		\caption{Network with communities and overlapping nodes}
+		\label{fig:overlapcommunities}
+	\end{center}
+	\end{figure}
+	
+\section{Motivation}
+	 The existing algorithms for community discovery in the literature retrieves disjoing communities. On the other hand, in reality, many people(nodes) belong to more than one community. For example, in Social Networks there are groups of people or entities who share some common properties, that may be friendship, organization, research etc. and further who have membership in  more than one community.  Overlapping community discovery may be  used 
+	\begin{itemize}
+		\item to find groups of people having diverse interests.
+		\item to find nodes with  connections to different clusters in the network.
+		\item to find groups of pages of World Wide Web which correspond to inter-disciplinary topics.
+	\end{itemize} 
+	
+\section{

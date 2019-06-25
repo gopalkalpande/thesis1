@@ -1,0 +1,129 @@
+\documentclass[a4paper,12pt,oneside]{book}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{geometry}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{subfig}
+\usepackage{makeidx}
+%\usepackage{wrapfig}
+%\usepackage{fullpage}
+\usepackage{alltt}
+%\usepackage[algoruled]{algorithm2e}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{verbatim}
+%\usepackage{framed}
+%\usepackage{multirow}
+\usepackage[bookmarks]{hyperref}
+\usepackage{array}
+%\usepackage{breqn}
+\usepackage{amsthm}
+%\usepackage{mathtools}
+\usepackage{hyperref}
+%\usepackage{capt-of}
+\usepackage{multicol}
+
+\setlength{\parindent}{0pt}
+\theoremstyle{plain} 
+\newtheorem{castheorem}{Theorem}[chapter]
+
+\linespread{1.5}
+\setcounter{MaxMatrixCols}{20}
+\geometry{tmargin=0.85in,  bmargin=0.85in, lmargin=1.4in,  rmargin=0.8in}
+\makeindex
+\pagestyle{empty}
+\begin{titlepage}
+\thispagestyle{empty}
+    \title{\bfseries \Large Overlapping Community Discovery in Social Networks}
+    \author{A Dissertation submitted to the University of Hyderabad\\in partial fulfillment of the degree of \\ \\
+    \bf \Large{Master of Technology}\\in\\ \bf \Large{Artificial Intelligence}\\ \\ By\\ \bf{D Shiva Shankar}\\ \bf{12MCMI41}\\ \\
+    {\includegraphics[width=1.3in]{figures/uohyd.jpg}}
+    \\School of Computer and Information Sciences
+    \\University of Hyderabad
+    \\Prof. C. R. Rao Road, Gachibowli, Hyderabad - 500 046} 
+\end{titlepage}
+
+\renewenvironment{frontmatter}{\pagenumbering{roman}}{\newpage
+        \pagenumbering{arabic}}
+\newenvironment{abstract}{\null\vfil\prefacesection{Abstract}}{\par\vfill\null}
+\newenvironment{acknowledgments}{\null\vfil\prefacesection{Acknowledgments}}{\par\vfill\null}
+\newenvironment{abbrevations}{\null\vfil\prefacesection{Abbreviations}}{\par\vfill\null}
+\newenvironment{notations}{\null\vfil\prefacesection{Notations}}{\par\vfill\null}
+\renewcommand{\bibname}{Bibliography}
+
+\newenvironment{dedication}
+{ \centering
+  \thispagestyle{empty}
+  \clearpage\null\vfill
+  \sl {\large To,}\\
+  \hspace{1.5in}}{
+  \vspace{3in}\vfill\null}
+  \def\prefacesection#1{
+  \chapter*{#1}
+  \addcontentsline{toc}{chapter}{#1}
+  \markboth{#1}{#1}
+}
+
+\date{}
+
+\begin{document}
+	\maketitle
+	\pagestyle{plain}
+	
+%------------------------------------------------------------Front Matter--------------------------------------------------------------	
+	\begin{frontmatter}
+	
+		\newpage
+		\input{certificate.tex}
+	
+		\newpage
+		\input{declaration.tex}
+	
+		\begin{dedication}
+			\thispagestyle{empty}
+			{{\bf My Parents}}
+		\end{dedication}
+	
+		\begin{acknowledgments}
+			\input{ack.tex}
+		\end{acknowledgments}
+	
+		\begin{abstract}
+			\input{abstract.tex}
+		\end{abstract}
+	
+		\tableofcontents
+	
+	\end{frontmatter}
+%--------------------------------------------------------------------------------------------------------------------------------------
+
+%----------------------------------------------------------Main Matter-----------------------------------------------------------------	
+
+	\renewcommand{\baselinestretch}{1.7}
+	
+	\chapter{Introduction}
+	\input{chapter1.tex}	
+	
+	\chapter{Background and Related Literature}
+	\input{chapter2.tex}
+	
+	\chapter{Proposed Algorithms for Overlapping Community Discovery}
+	\input{chapter3.tex}
+	
+	\chapter{Implementation and Results}
+	\input{chapter4.tex}
+	
+	\chapter{Conclusion and Future Work}
+	\input{chapter5.tex}
+	
+	\clearpage
+	\addcontentsline{toc}{chapter}{Bibliography}
+	\input{bibliography.tex}
+	
+\end{document}

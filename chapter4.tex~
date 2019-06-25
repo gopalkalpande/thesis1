@@ -1,0 +1,337 @@
+Implementation of the proposed overlapping community discovery algorithms, Algorithm \ref{algo:consensus} \& algorithm \ref{algo:connectivity} is carried out on three benchmark social network datasets namely Zachary, Collaboration and Dolphin. Though analysis of Zachary network has been done in the previous chapter, we place it here with more details and for completeness sake. Since overlapping information is not available for any of these data sets, we construct two  data sets from individual facebook accounts where we know who are common friends using the author's facebook network data along with  two of his friends' facebook network data. One synthetic dataset named as Synthetic dataset is also being used. These total six datasets are used for the analysis of the proposed algorithms given in the section \ref{consensus_clustering} \& section \ref{connectivity_consensus}
+
+%-----------------------------------------------------------------------------------------------------------------------------------
+
+\section{Datasets}
+	The datasets being considered for this study are summarized in Table \ref{table:datasets} which are described in some detail in the following section.
+	
+		%\begin{table}[h]
+		%\centering
+		\begin{center}
+		\begin{tabular}{| c | c | c |}
+			\hline
+			Dataset & Nodes & Edges \\ \hline
+			Zachary network & 34 & 78 \\ \hline
+			Collaboration network & 5242 & 14496 \\ \hline
+			Dolphin & 63 & 157 \\ \hline
+			Synthetic dataset & 350 & 6215 \\ \hline
+			Shiva-Gopi facebook data & 919 & 24279 \\ \hline
+			Shiva-Swayam facebook data & 1603 & 40203 \\ \hline									
+		\end{tabular}
+		\captionof{table}{Benchmark \& Synthetic datasets considered}
+		\label{table:datasets}
+		%\end{table}
+		\end{center}
+	
+	\subsection{Benchmark Datasets}
+		\begin{itemize}
+		\item \textbf{Dataset1: Zachary network} \cite{ZacharyDataset} 
+		
+		\textbf{Description: } Zachary dataset contains information regarding interaction among  members of a university karate club  given as two $34\times34$ matrices, as a  binary matrix and a weighted matrix. Binary matrix represents the presence of ties among the members of the club. Valued matrix represents the relative strength of the associations that is number of situations in and outside the club in which interactions occurred. In the year 1977 Zachary used these data and an information flow of network conflict resolution to explain the split-up of this group following disputes among the members. 		
+		
+			
+		\item \textbf{Dataset2: Collaboration network} \cite{GRQDataset}
+		
+		\textbf{Description: }Collaboration network contains author collaborations with regard to General Relativity and Quantum Cosmology Arxiv GR-QC covering papers submitted submitted to General Relativity and Quantum Cosmology category in the period from January 1993 to April 2003 (124 months). If an author $i$ co-authored a paper with author $j$, the graph contains an undirected edge from $i$ to $j$. If the paper is co-authored by $k$ authors this generates a completely connected (sub)graph on $k$ nodes. 
+				
+		
+		\item \textbf{Dataset3: Dolphin} \cite{Dolphin}
+		
+		\textbf{Description: }Dolphin is an undirected graph depicting frequent associations between 62 (as per reference paper) dolphins in a community living off Doubtful Sound, New Zealand.
+		\end{itemize}					 
+	
+	\subsection{Synthetic Datasets}
+		\begin{itemize}
+		\item \textbf{Dataset4: Synthetic dataset \cite{syntheticdataset}}\label{syntheticdataset1}
+		
+		\textbf{Description: }Synthetic dataset has been designed \cite{syntheticdataset} in such a way that the network contains a community structure.  This graph has four types of edges. We do not consider the type and hence remove all parallel edges. This pruned  network has  350 nodes and 6215 edges. 
+		\newpage
+		\item \textbf{Dataset5: Shiva-Gopi facebook data.}
+		\item \textbf{Dataset6: Shiva-Swayam facebook data.}
+		
+		\textbf{Description: }Recently Facebook has made it possible for the data to be  downloaded using a facebook app called $netvizz$. Datasets 5 and 6 are  collected by combining data of two facebook user accounts of the author Shiva Shankar Danthuri with data of  his friends Gopi Tadaka and Swayam Prakash respectively.  The downloaded facebook data is in file.gdf format. Its data contains two parts, one is friends list that is in the form of 
+		
+		$nodedef$ $>$ $name$ VARCHAR, $label$ VARCHAR, $sex$ VARCHAR, \\
+		$locale$ VARCHAR, $agerank$ INT\\
+		
+		and another is edgelist that is in the form of 
+		
+		$edgedef$ $>$ $node1$ VARCHAR, $node2$ VARCHAR. 
+		
+		\end{itemize}
+		
+%--------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Results on Benchmark Datasets}
+	The algorithms available on \emph{RStudio} are executed for all the datasets which give modularity coefficient and number of communities as the output.
+	\begin{itemize}
+		\item \textbf{Zachary network}
+		\begin{center}
+		%\begin{table}[htb]
+		%	\centering
+			\begin{tabular}{| c | c | c |}
+				\hline
+				Algorithm & Modularity (best split) & Number of Communities \\ \hline
+				Edge Betweenness & 0.4012985 & 5  \\ \hline
+				Fastgreedy & 0.3806706 & 3 \\ \hline
+				Leading Eigenvector& 0.3934089 & 4 \\ \hline
+				Multi Level & 0.4188034 & 4 \\ \hline
+				Optimal & 0.4107143 & 4 \\ \hline							
+				Infomap & 0.4020381 & 3 \\ \hline
+				Walktrap & 0.3532216 & 5 \\ \hline						
+			\end{tabular}
+			\captionof{table}{Zachary network: number of communities \& modularity values}
+			\label{table:zacharycommunities}
+		%\end{table}
+		\end{center}
+		
+		On Zachary network Edge betweenness and Walktrap algorithms output five communities as shown in Figures \ref{Z-figures}, remaining all other algorithms give three or four communities. The node $10$ is considered as a separate community by Edge betweenness algorithm. In Walktrap algorithm there are three communities formed with $8,6,9$ nodes, these nodes are forming into two communities in other algorithms. These nodes are forming into two communities of size $10,12$ by adding one more node that is node $10$ which is considered a separate community in the Edge betweenness algorithm.
+		
+		\begin{center}
+		%\begin{table}[htb]
+		%	\centering	
+			\begin{tabular}{| c | c | c |}
+				\hline
+				Algorithm & Number of overlapping nodes  \\ \hline
+				Consensus Clustering  &  5 (3,10,14,20,24)    \\ \hline
+				Connectivity Consensus & 5 (3,10,24,28,32)  \\ \hline						
+			\end{tabular}
+			\captionof{table}{Overlapping nodes for Zachary network}
+			\label{table:zacharyoverlap}
+		%\end{table}
+		\end{center}
+		
+		It is observed that in the above table there are five nodes in overlapping region in both the algorithms. Among these five nodes three nodes named $3,10,24$ are common in both the algorithms, so we can say these three nodes satisfy consensus over consensus. The overlapping nodes have good number of connections to other communities as well.
+		
+		\item \textbf{Collaboration network}
+		\begin{center}
+		%\begin{table}[htb]
+		%	\centering
+			\begin{tabular}{| c | c | c |}
+				\hline
+				Algorithm & Modularity (best split) & Number of Communities \\ \hline
+				Edge Betweenness & 0.8490437 & 433   \\ \hline
+				Fastgreedy & 0.8137622 & 415 \\ \hline
+				Leading Eigenvector& 0.7840748 & 406 \\ \hline
+				Multi Level & 0.860752 & 392 \\ \hline
+				Infomap & 0.7943545 & 717 \\ \hline
+				Walktrap & 0.7823643 & 815 \\ \hline						
+			\end{tabular}
+			\captionof{table}{Collaboration network: communities \& modularity values}
+			\label{table:collaborationcommunities}
+		%\end{table}
+		\end{center}
+		
+		Since it is a big collaboration network with 5242 nodes and 14496 edges, it takes more time to execute in \emph{RStudio}.  Table \ref{table:collaborationcommunities} shows the different  number of communities obtained by the different algorithms. Walktrap algorithm gives highest number of communities 815 and ML gives 392 communities with highest modularity coefficient. All the algorithms give modularity value of approximately 0.80.
+		
+		\begin{center}
+		%\begin{table}[htb]
+			%\centering
+			\begin{tabular}{| c | c | c |}
+				\hline
+				Algorithm & Number of overlapping nodes  \\ \hline
+				Consensus Clustering  &  389    \\ \hline
+				Connectivity Consensus & 335  \\ \hline						
+			\end{tabular}
+			\captionof{table}{Overlapping nodes for Collaboration network}
+			\label{table:collaborationoverlap}
+		%\end{table}	
+		\end{center}
+		%\newpage
+		
+		In the above table consensus clustering algorithm gives 389 overlapping nodes by considering 100\% consensus (i.e all the algorithms). This value changes according to the consensus percentage. In case of connectivity consensus there are 335 overlapping nodes, this output is according to 50\% of an individual node connectivity with consensus of 50\% of algorithms. This value could be changed when we change the consensus either in connectivity or in algorithms.
+		
+		There are 193 common nodes among these 389 and 335 nodes given by two algorithms \ref{algo:consensus} \& \ref{algo:connectivity}. From this we can conclude that there are 193 nodes which are completely overlapping which satisfy the properties of both the algorithms.  
+		
+		\item \textbf{Dolphin dataset}
+		\begin{center}
+		%\begin{table}[htb]
+		%	\centering
+			\begin{tabular}{| c | c | c |}
+				\hline
+				Algorithm & Modularity (best split) & Number of Communities \\ \hline
+				Edge Betweenness & 0.4392876 & 15   \\ \hline
+				Fastgreedy & 0.4657187 & 4 \\ \hline
+				Leading Eigenvector& 0.4986815 & 5 \\ \hline
+				Multi Level & 0.5212382 & 5 \\ \hline
+				Infomap & 0.5152745 & 6 \\ \hline
+				Optimal & 0.5252546 & 5 \\ \hline
+				Walktrap & 0.5002637 & 7 \\ \hline						
+			\end{tabular}
+			\captionof{table}{Dolphin network: communities \& modularity values}
+			\label{table:dolphincommunities}
+		%\end{table}
+		\end{center}
+		
+		From Table \ref{table:dolphincommunities}, we can observe that Edge betweenness algorithm gives highest number of communities 15, other algorithms gives not more than 7. Edge betweenness algorithm outputs four communities with single node they are nodes numbers 5, 12, 13, 36 and three communities with two nodes they are nodes (33, 61), (47, 50) and (54, 62). Walktrap algorithm gives two communities having two nodes each and these are (33, 61) and (47, 50). Except for Edge betweenness and Walktrap algorithms no other algorithm forms communities with one node or two nodes. These one node or two node communities are merged with other communities by the other algorithms. We could observe that all the modularity values are approximately 0.50.
+		
+		\begin{center}
+		%\begin{table}[h]
+		%	\centering
+			\begin{tabular}{| c | c | c |}
+				\hline
+				Algorithm & Number of overlapping nodes  \\ \hline
+				Consensus Clustering  &  9 (1,3,21,29,31,37,40,53,55)   \\ \hline
+				Connectivity Consensus & 10 (1,8,9,20,21,29,37,40,41,51) \\ \hline						
+			\end{tabular}
+			\captionof{table}{Overlapping nodes for Dolphin network }
+			\label{table:dolphinoverlap}
+		%\end{table}
+		\end{center}
+		
+		From Table \ref{table:dolphinoverlap}, we can see  that there are 9 nodes overlapping according to Consensus clustering with 100\% consensus. This value changes when consensus percentage changes. According to the algorithm of Connectivity consensus there are 10 nodes that are overlapping. Both the algorithms agree on five common nodes 1, 21, 29, 37, 40 to be overlapping. According to the results of our algorithms we can conclude these five nodes to be certainly in the overlapping region.
+		
+	\end{itemize}
+	
+%-------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Results on Synthetic Datasets}
+	\begin{itemize}
+		\item \textbf{Synthetic dataset}
+		\begin{center}
+		%\begin{table}[h]
+			%\centering
+			\begin{tabular}{| c | c | c |}
+				\hline
+				Algorithm & Modularity (best split) & Number of Communities \\ \hline
+				Edge Betweenness & 0.3943921 & 4  \\ \hline
+				Fastgreedy & 0.3953974 & 3 \\ \hline
+				Leading Eigenvector& 0.3925157 & 3 \\ \hline
+				Multi Level & 0.3953667 & 3 \\ \hline
+				Infomap & 0.3953974 & 3 \\ \hline
+				Walktrap & 0.3953974 & 3 \\ \hline						
+			\end{tabular}
+			\captionof{table}{Synthetic dataset: communities \& modularity values}
+			\label{table:syntheticdataset1communities}
+		%\end{table}
+		\end{center}
+		
+		Edge betweenness algorithm gives four communities and remaining all the other algorithms are giving three communities for this Synthetic data set which is designed to have 3 communities confirming the definition of the data set in Section \ref{syntheticdataset1}.  Edge betweenness algorithm has a single node 310 as a separate  community.  We can  observe that modularity value in all algorithms is stable at approximately 0.3953.
+		
+		\begin{center}
+		%\begin{table}[h]
+			%\centering
+			\begin{tabular}{| c | c | c |}
+				\hline
+				Algorithm & Number of overlapping nodes  \\ \hline
+				Consensus Clustering  & 1 (i.e. 310) \\ \hline
+				Connectivity Consensus & 0 \\ \hline						
+			\end{tabular}
+			\captionof{table}{Overlapping nodes for Synthetic dataset}
+			\label{table:syntheticdataset1overlap}
+		%\end{table}
+		\end{center}
+		
+		It is highly interesting to note that for the synthetic data set designed to have 3 well-formed communities, the proposed algorithms also detects almost no overlapping nodes. 
+%SDB Not clear why one node comes out to be overlapping eventhough all the algos except one says node 310 belongs to one community. Is there an ambiguity for 310 in membership?  
+In Table \ref{table:syntheticdataset1overlap} we can observe that there is only one overlapping node according to Consensus clustering approach (with 100\% consensus) because Edge betweenness algorithm considers the node 310 as a separate community. There is no overlapping node according to Connectivity  consensus approach since the data set is a synthetic data set designed to have three disjoint communities. 
+		
+		From this we can observe that the Synthetic dataset which  is designed to have three well-formed communities, has very little chance to have any overlapping nodes. In fact this shows that the Algorithms \ref{algo:consensus} and \ref{algo:connectivity} are both working very well on the synthetic data set.  
+		
+		\item \textbf{Shiva-Gopi facebook data}
+		\begin{center}
+		%\begin{table}[h]
+			%\centering
+			\begin{tabular}{| c | c | c |}
+				\hline
+				Algorithm & Modularity (best split) & Number of Communities \\ \hline
+				Edge Betweenness & 0.311986 & 92  \\ \hline
+				Fastgreedy & 0.3895095 & 7 \\ \hline
+				Leading Eigenvector& 0.414189 & 13 \\ \hline
+				Multi Level & 0.4264074 & 7 \\ \hline
+				Infomap & 0.3270177 & 21 \\ \hline
+				Walktrap & 0.3892167 & 56 \\ \hline						
+			\end{tabular}
+			\captionof{table}{Shiva-Gopi facebook network: communities \& modularity values}
+			\label{table:shivagopicommunities}
+		%\end{table}
+		\end{center}
+		
+		 Shiva-Gopi facebook data set has 919 nodes and 24279 edges as given in Table \ref{table:datasets}. The author Shiva Shankar Danthuri has 301 friends and his friend Gopi Tadaka has 630 friends.  There should be a total of 931 (i.e. 301 + 630) nodes by combining these two user networks, but we mentioned 919 nodes in the table \ref{table:datasets} because there are 12 common friends in both accounts. 
+
+		Among all algorithms, Edge betweenness algorithm gives highest number of communities (i.e. 92), since very high degree nodes exist, for example, 4 nodes having degrees 630, 403, 334, 330;  18 nodes whose degrees are more than 200 and there are 123 nodes whose degrees are 100 and more. We actually combined two networks with 301 nodes and 630 nodes, but the community discovery algorithms extract  more than two communities because there are some nodes whose degrees exceed the number of nodes of one network.
+		
+		\begin{center}
+		%\begin{table}[h]
+			%\centering
+			\begin{tabular}{| c | c | c |}
+				\hline
+				Algorithm & Number of overlapping nodes  \\ \hline
+				Consensus Clustering  & 74  \\ \hline
+				Connectivity Consensus & 69 \\ \hline						
+			\end{tabular}
+			\captionof{table}{Overlapping nodes of Shiva-Gopi facebook network }
+			\label{table:shivagopioverlap}
+		%\end{table}
+		\end{center}
+		
+%%SDB Give label for the table etc. Don't use above table: give in Table\ref{}	
+	In Table \ref{table:shivagopioverlap}, we can see  that there are 74 overlapping nodes by using Consensus clustering approach.  In this table, Consensus clustering approach gives that there are 74 overlapping nodes because community discovery algorithms are dividing the whole network into a large number of communities instead of dividing into only two communities. This happens because there are some nodes which are densely connected in the network, their degrees are more than 50\% of nodes in one account data, these nodes are also forming  communities. That is the reason there are large number of communities formed in the network leading to large number of overlapping nodes. In case of Connectivity approach there are 69 overlapping nodes. 
+		
+		Out of these nodes, we see that the number of common nodes is 39  which can be considered to be truly overlapping agreed by both the  algorithms  \ref{algo:consensus}  \&  \ref{algo:connectivity}. These 39 nodes share their connections approximately equally with the other communities as well as within the community. When we analyzed further, we find that  not all of the 12 common friends belong to this overlapping region. Only two of these friends are found to be  overlapping nodes by the first algorithm. We find that the reason for this fact is that common friends unless they are of high degree, that is have interactions with many other common friends do not come out in the overlapping region. Hence these algorithms do retrieve non-trivial nodes which satisfy the intuition that  friends having  connections to many communities as overlapping.
+%SDB These nodes contain the 12 common friends that we detected among the two users. Further, when we analyze the other nodes, they seem to be nodes having high number of interactions with some core members of either group. ???
+
+
+% Remove?  We already know that there are actually 12 overlapping nodes but we got 74 nodes in one algorithm and 69 nodes are in the other algorithm, because when we merge two networks the network structure changes, then the network will be divided into many communities based on its structure. Among those communities the overlapping nodes will be detected. It may not be overlapping nodes between only two nodes that we merged in this dataset.
+		
+%SDBNot clear		When we cross checked, there are two nodes are matching with result of the algorithm \ref{algo:consensus} and no node is matched with the result of the algorithm \ref{algo:connectivity}. It is possible when there is much difference in the sizes of networks which are merged. That is we merged he two networks with sizes of 301 and 630 nodes, so there are some nodes whose degree is more than 301 (i.e. small network between two merged networks). These nodes form its own communities is the network, community discovery algorithms divide communities based on overall structure of the network and our algorithms \ref{algo:consensus} \& \ref{algo:connectivity} work on those communities and gives the overlapping nodes in the network.
+		
+		\item \textbf{Shiva-Swayam facebook data}
+		\begin{center}
+		%\begin{table}[h]
+		%	\centering
+			\begin{tabular}{| c | c | c |}
+				\hline
+				Algorithm & Modularity (best split) & Number of Communities \\ \hline
+				Edge Betweenness & 0.6523698 & 198  \\ \hline
+				Fastgreedy & 0.6293061 & 10 \\ \hline
+				Leading Eigenvector& 0.653447 & 8 \\ \hline
+				Multi Level & 0.6712994 & 7 \\ \hline
+				Infomap & 0.6464744 & 47 \\ \hline
+				Walktrap & 0.6668866 & 35 \\ \hline						
+			\end{tabular}
+			\captionof{table}{Shiva-Swayam facebook network communities \& modularity}
+			\label{table:shivaswayamcommunities}
+		%\end{table}
+		\end{center}
+		
+		In Shiva-Swayam facebook data there are 1603 nodes and 40203 edges. The user Shiva Shankar Danthuri has 301 friends and the other user Swayam Prakash has 1384 friends having 82 common friends.  
+
+		Among all algorithms, Edge betweenness algorithm gives highest number of communities (i.e. 198), because there are 254 nodes whose degrees are 100 and more than 100. These nodes form new communities with its neighbourhood nodes, so that community discovery algorithms give large number of communities instead of two communities.
+		
+		\begin{center}
+		%\begin{table}[h]
+		%	\centering
+			\begin{tabular}{| c | c | c |}
+				\hline
+				Algorithm & Number of overlapping nodes  \\ \hline
+				Consensus Clustering  & 107 \\ \hline
+				Connectivity Consensus & 100 \\ \hline						
+			\end{tabular}
+			\captionof{table}{Shiva-Swayam facebook network number of overlapping nodes}
+			\label{table:shivaswayamoverlap}
+		%\end{table}
+		\end{center}
+		
+		In Table \ref{table:shivaswayamoverlap}  we can see that there are 107 overlapping nodes by using Consensus clustering approach and 100 nodes  using the second algorithm. There are 41 common nodes among these 107 and 100 nodes given by two algorithms \ref{algo:consensus} \& \ref{algo:connectivity}.
+%In the above table Consensus clustering approach says that there are 50 overlapping nodes because community discovery algorithms are dividing the whole network into larger number of communities instead of dividing into two communities. This happens because there are some nodes which are densely connected in the network, their degrees are more than 50\% of nodes in one account data, these nodes are also forming communities. That is the reason there are large number of communities are formed in the network that leads to large number of overlapping nodes.			
+		
+		
+%%41 and 82 any connection? Reasoning has to be done in a better way. Are 50 subset of 81 nodes? We need to take example of one node among these 81 nodes which are not part of the 50, a friend that you know and analyze why it is not overlapping. These are networks that you know and it will be good if you take some specific examples.
+ These 41 nodes  share  connections approximately equally with the other communities as well as within the community.  In fact out of the  82 common friends only one node is obtained as overlapping by both the algorithms. Similar to analysis carried out earlier, we see that the overlapping nodes obtained by our algorithms are of very high degree having many connections with friends from different communities and hence  truly belong to the overlapping regions of different communities.
+		
+	\end{itemize}
+	
+%--------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Conclusion}
+
+	The two algorithms on overlapping community discovery tackle the problem from two different points of view: one considering nodes outside core communities as overlapping; the other detecting nodes that have connections with more than one community as overlapping. It is expected that the results are different and also it is interesting to see that there is a non-trivial intersection between the predictions. That is there is a set of overlapping nodes that is arrived at on consensus by both the algorithms.  The common nodes given by both the algorithms can be considered to be in the overlapping region with a high certainty since they are sharing approximately equal connections with the same community and other communities (i.e. approximately half of their connections are with the outside of the community).
+	
+	In the case of  benchmark datasets of  Zachary karate club and Dolphin network, we can observe that the overlapping nodes commonly given by both the algorithms \ref{algo:consensus} \& \ref{algo:connectivity} do belong to the overlapping region as can be seen visually since these networks are  comparatively smaller than the other datasets.
+	
+	In Collaboration network and three synthetic datasets, the interesting result of obtaining no overlapping nodes for Synthetic dataset is very satisfactory as the data set is designed to have three disjoint communities. The facebook results of Shiva-Gopi facebook dataset and Shiva-Swayam facebook datasets conform to the common friendships as well as nodes that may be friend-of-friend having high degree of interconnections. 
+
+It is of course necessary to validate the algorithms further on any bench mark data sets that are designed and constructed for overlapping community discovery which are not yet available to the best of our knowledge.
+
+%--------------------------------------------------------------------------------------------------------------------------------------

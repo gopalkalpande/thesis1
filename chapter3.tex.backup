@@ -1,0 +1,273 @@
+%\section{Basic Idea of Algorithm}
+	We adopt the approach of Consensus Clustering to detect overlapping communities. In the context of clustering of nodes, different ways of  clustering of nodes  may be obtained by different algorithms. Also, as an internal parameter like $K$ in $K$-Means algorithm is changed, different clusterings are obtained. In order to choose a single clustering that agrees most with the other clusterings, the idea of consensus clustering was  proposed by \cite{consensusclustering}. 
+	
+	Consensus clustering is an NP-hard problem. There are many approximation algorithms proposed in the  literature like Best-of-K, Majority rule, Best One Element Move, average linkage etc \cite{consensusclustering}. 
+	
+%------------------------------------------------------------------------------------------------------------------------------------
+	
+\section{Motivation}
+	
+	We adopt these ideas behind consensus clustering to the context of overlapping community discovery. Since 
+	existing community discovery algorithms attach a community label to each node, can  we check if majority of 
+	algorithms agree that a pair of nodes belongs to a specific community then those two nodes belong to that community.   
+	The nodes (of degree $>$ 1) for which the algorithms do not form a consensus are considered to be overlapping nodes.
+
+%------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Algorithm based on Consensus Clustering}\label{consensus_clustering}
+
+	A node in a social network either may be embedded within the core of a community or 
+	the nodes  may be either on the periphery of a community  or may  belong to more than one community. 
+	In order to distinguish the location of a node, we propose the Algorithm \ref{algo:consensus}, 
+	in which we define the core of a community as  nodes that are co-clustered by all the algorithms as belonging 
+	to one single community. If  algorithms do not have consensus on  cluster labels of two nodes, then there exists some ambiguity 
+	regarding the membership of these  nodes. These nodes are potentially in the overlapping regions if they are not isolated or 
+	on the periphery (of degree 1).
+
+	\begin{algorithm}[H]
+		\caption{Overlapping community discovery using consensus clustering.}
+		\label{algo:consensus}
+		\textbf{Input:} Community labels obtained from  $k$ community discovery algorithms on a graph $G=(V,E)$, $|V| = n$, $|E|=m$\\
+		\textbf{Output:} overlapping nodes.
+		\begin{algorithmic}[1]
+			\STATE read the input file and save as $A(i,j)= $community labels given to node $i$ by the algorithm $j$
+			%\STATE read the input file and save it into a two dimension array $A_{m \times n}$. Where $m$ is the number of nodes and $n$ is the number of algorithms.
+			\STATE $M(i,j) = 0$  for each $i,j = 1,2,...,n$
+			\FOR {$l = 1,2,...,k$}
+				%\FOR {each label $l$, where $l = 1,2,...n$}
+					\IF {$A(i,l) = A(j,l)$}
+						\STATE $count(i,j) ++$
+						%\STATE $count ++$
+					\ENDIF
+				%\ENDFOR
+				\IF {$count = k$}
+					\STATE $M(i,j) = 1$
+					%\STATE $v_i,v_j$ are co-clustered.
+				\ENDIF
+			\ENDFOR
+			\FOR {$i = 1,2,...,n$}
+				\STATE $G_i = \{i\}$
+				\FOR {$j = 1,2,...,n$}
+					\IF {$M(i,j)=1$}
+						\STATE $G_i = G_i \cup \{j\}$
+					\ENDIF
+				\ENDFOR
+			\ENDFOR
+			\FOR {$i=1,2,...,n$}
+				\IF {$length(G_i) = 1$ \&\& $degree(i) > 1$}
+					\STATE node $i$ is overlapping node
+				\ENDIF
+			\ENDFOR
+		\end{algorithmic}
+	\end{algorithm}
+	
+	\textbf{Time complexity:}
+	
+	In this algorithm it has to check labels of each node with all other nodes for all the given algorithms that takes $nk$ time, and this checking should happen for all the remaining nodes also with all other nodes. Total time will be taken by this algorithm is $\bigcirc(n^2k)$.
+	
+	\subsection{Implementation on Zachary karate club}\label{zacharylabelsdescription}
+	
+	Zachary Karate club dataset is a graph with  members of a university karate club as nodes and interactions between the members
+	as edges and has been collected by Wayne Zachary. It has 34 nodes and 78 edges. We choose seven  community discovery 
+	algorithms for computing the consensus on clustering. The algorithms of Edge betweenness, Fastgreedy, Infomap, Multi level,  
+	Leading eigenvector, Optimal,  Walktrap algorithm available  in a software package called \emph{RStudio} are executed. 
+	We have not considered  Label propagation algorithm and Spinglass algorithm since they are not found to be stable and community 
+	labels are getting changed in  different  executions. A snapshot of the  community labels assigned to the nodes by these algorithms 
+	is given in Table \ref{table:Z-labels}.
+	
+	\begin{center}
+		\begin{tabular}{| c | c | c | c | c | c | c | c |}
+			\hline
+			Node & EBC & FG & INF & LEV & ML & OPT & WT \\ \hline
+			1 & 1 &	1 & 1 &	2 & 1 & 2 & 1 \\ 
+			2 & 1 & 3 & 3 & 2 & 1 & 2 & 1 \\ 
+			3 & 2 & 3 & 3 & 2 & 1 & 2 & 2 \\ 
+			4 & 1 & 3 & 3 & 2 & 1 & 2 & 1 \\ 
+			5 & 3 & 1 & 1 &	1 & 2 &	3 & 5 \\ 
+			6 & 3 &	1 & 1 &	1 & 2 &	3 & 5 \\ 
+			7 & 3 &	1 & 1 &	1 & 2 &	3 & 5 \\ 
+			$\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+			$\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+			$\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\ 
+			34 & 4 & 2 & 2 & 4 & 3 & 1 & 3 \\ \hline  			
+		\end{tabular}
+		\captionof{table}{Zachary nodes \& its community labels}
+		\label{table:Z-labels}		
+	\end{center}	
+	
+	In the above table first column represents node numbers of Zachary network and remaining seven 
+	columns represent community labels of that algorithm.
+	
+	EBC: Edge betweenness centrality algorithm
+	
+	FG : Fastgreedy algorithm
+	
+	INF: Infomap algorithm
+	
+	LEV: Leading eigenvector algorithm
+	
+	ML : Multi level algorithm
+	
+	OPT: Optimal algorithm
+	
+	WT : Walktrap algorithm
+	
+	Actually there exists only two disjoint communities in the Zachary network in the ground truth \cite{CommunityGroudTruth}. 
+	
+	\begin{center}
+	\includegraphics[width=15cm,height=12cm]{figures/zachary_two_communities.eps}	
+	\captionof{figure}{Zachary network with two communities represented in green colour and yellow colour \cite{rstudioimage}}
+	\label{fig:Z-consensus-overlap}
+	\end{center}
+	
+	In the above figure we can see two communities with green colour and yellow colour. There are no overlapping nodes as of now, but in some of the papers says that there are two nodes which are in overlapping they are, node 3 and node 10.
+	
+	
+	\subsection{Zachary network figures for various community discovery algorithms}\label{Z-figures}
+	
+		In this section we look at seven figures \cite{rstudioimage} of Zachary network with different communities coloured differently. 
+		Each figure is an output of different community discovery algorithm that is mention in the figure caption.   
+	
+		%\begin{multicols}{2}
+		
+		\begin{center}
+		\includegraphics[width=12cm,height=8cm]{figures/zachary_ebc.png}	
+		\captionof{figure}{Zachary network with communities according to EBC}
+		\label{fig:Z-ebc}
+		\end{center}
+		
+		\begin{center}
+		\includegraphics[width=12cm,height=8cm]{figures/zachary_fg.png}	
+		\captionof{figure}{Zachary network with communities according to FG}
+		\label{fig:Z-fg}
+		\end{center}
+		
+		\begin{center}
+		\includegraphics[width=12cm,height=10cm]{figures/zachary_inf.png}	
+		\captionof{figure}{Zachary network with communities according to INF}
+		\label{fig:Z-inf}
+		\end{center}
+		
+		\begin{center}
+		\includegraphics[width=12cm,height=10cm]{figures/zachary_lev.png}	
+		\captionof{figure}{Zachary network with communities according to LEV}
+		\label{fig:Z-lev}
+		\end{center}
+		
+		\begin{center}
+		\includegraphics[width=12cm,height=10cm]{figures/zachary_ml.png}	
+		\captionof{figure}{Zachary network with communities according to ML}
+		\label{fig:Z-ml}
+		\end{center}
+		
+		\begin{center}
+		\includegraphics[width=12cm,height=10cm]{figures/zachary_opt.png}	
+		\captionof{figure}{Zachary network with communities according to OPT}
+		\label{fig:Z-opt}
+		\end{center}
+		
+		\begin{center}
+		\includegraphics[width=12cm,height=10cm]{figures/zachary_wt.png}	
+		\captionof{figure}{Zachary network with communities according to WT}
+		\label{fig:Z-wt}
+		\end{center}
+		
+		%\end{multicols}
+	
+	
+	
+	As it is explained in the algorithm \ref{algo:consensus}, the input file contains data in the format of $nodes \times algorithms$. Consider nodes one and two, their labels in FG and INF is different and remaining all other algorithms are the same.  It means nodes one and two are co-clustered in five algorithms out of seven algorithms. In the same way nodes one and three are co-clustered in three algorithms out of seven algorithms. Consider nodes five, six and seven whose labels in all the algorithms are same. This means that  all these three nodes are co-clustered by all algorithms (i.e. 100\% of the algorithms) and hence  can be considered as 100\% consensus. In the same way each pair of nodes considered and checked whether they are co-clustered in all algorithms  or some percentage of algorithms (could be adjusted based on the requirement). All these co-clustered pairs will be written into a file and make groups of all the nodes which are co-clustered. If any node is not co-clustered with any other node and its degree is greater than one then this  node will be considered as an  overlapping node.
+	
+	This algorithm \ref{algo:consensus} is implemented on Zachary network and  five nodes (3,10,14,20,24) emerge as overlapping nodes, because some of the algorithms divide this network into more than two communities that is shown in the section\label{Z-figures}. Note that in Figure  \ref{fig:Z-consensus-overlap} these five nodes can be seen clearly to be overlapping nodes.
+	
+	\begin{center}
+	\includegraphics[width=15cm,height=12cm]{figures/zachary_consensus_overlap.eps}	
+	\captionof{figure}{Zachary network with five overlapping nodes represented in red colour according to the above algorithm \ref{algo:consensus}}
+	\label{fig:Z-consensus-overlap}
+	\end{center}
+	
+	In the above figure we can observe that there are five overlapping nodes (3,10,14,20,24) represented with red colour. The image source is \cite{rstudioimage}
+	
+%----------------------------------------------------------------------------------------------------------------------------------	
+	
+\section{Algorithm based on Connectivity Consensus}\label{connectivity_consensus}
+
+	Unlike the previous algorithm which detects the cores of communities and annotates the rest as overlapping, 
+	here we detect directly the overlapping nodes. The intuition behind this algorithm is that an overlapping node is
+	most probably connected to neighbours that belong to different communities. Here again the 'overlappingness' of a 
+	node is decided based on the consensus arrived at by majority of the algorithms.
+
+	Zachary network nodes and its community labels are described in the section \ref{zacharylabelsdescription}.
+		
+	\textbf{Step1: }For a fixed algorithm for a node $a$ if majority of its neighbours of node $a$ belong to different communities.
+	
+	\textbf{Step2: }If a node $a$ and its neighbours do not belong to the same community by majority of the algorithms 
+	then it is to be considered that the node $a$ is overlapping node. 
+	
+	\begin{algorithm}[H]
+		\caption{Overlapping community discovery using connectivity consensus.}
+		\label{algo:connectivity}
+		\textbf{Input:} graph $G(V,E)$ edge list and a file consists community labels of each algorithm. \\
+		\textbf{Output:} overlapping nodes.
+		\begin{algorithmic}[1]
+			\STATE $|V| = n$, $|E| = m$, $k$ = number of algorithms and $edge(i,j)$ = edge between nodes $i$ and $j$.
+			\STATE calculate degree of each node.
+			\FOR {$i = 1$ to $n$}
+				\STATE $c = 0$, $count_1 = 0,count_2 = 0,...., count_k = 0$.
+				\FOR {$j = 1$ to $n$}
+					\IF {$edge(i,j) = TRUE$}
+						\FOR {$l = 1$ to $k$}
+							\IF {$label_l(i) != label_l(j)$}
+								\STATE $count_l ++$
+							\ENDIF
+						\ENDFOR
+					\ENDIF
+				\ENDFOR
+				\FOR {$l = 1$ to $k$}
+					\IF {$degree(i) > 1 \&\& count_l >= \lceil degree(i)/2 \rceil $}
+						\STATE $c ++$
+					\ENDIF
+				\ENDFOR
+				\IF {$c >= \lceil k/2 \rceil $}
+					\STATE print $i$.
+				\ENDIF
+			\ENDFOR
+		\end{algorithmic}
+	\end{algorithm}	
+	
+	\textbf{Time complexity:}
+	
+	In this algorithm it has to check labels of all neighbours of one node. A node can have a maximum of $n-1$ neighbours. To check one node's all neighbours takes $n-1$ time, this checking should happen for all the nodes and also for all the algorithms. Therefore total time taken by this algorithm is $\bigcirc(n^2k)$. 
+	
+	\subsection{Implementation on Zachary karate club}
+		
+		As  explained in the algorithm, input file contains data in the format $nodes \times algorithms$.
+		Take every individual node and check the community labels of all its neighbours for a fixed algorithm. 
+		If a minimum of  50\% of its neighbours have different community labels (i.e. not co-clustered) then 
+		this node is potentially an overlapping node. Now  check for all the remaining algorithms for consensus. Finally, among these, only the nodes whose degree is  greater than one are considered to be overlapping nodes.            
+		
+		This approach when  implemented on Zachary network  gave again the  five nodes 
+		(3,10,24,28,32) as overlapping nodes. Note that in Figure \ref{fig:Z-connectivity-overlap}
+		these five nodes can be seen clearly to be overlapping nodes.
+		
+		\begin{center}
+		\includegraphics[width=15cm,height=12cm]{figures/zachary_connectivity_overlap.eps}	
+		\captionof{figure}{Zachary network with five overlapping nodes represented in red colour according to the
+		above algorithm \cite{rstudioimage}}
+		\label{fig:Z-connectivity-overlap}
+		\end{center}
+		
+		In the above figure we can observe that there are five overlapping nodes (3,10,24,28,32) represented with red colour.	
+		
+		
+	
+		
+	\subsection{Conclusion}
+	Two novel algorithms for overlapping community discovery have been proposed in this chapter based on the idea of consensus clustering. As a preliminary checking, the algorithms have been implemented and tested on a small but popular benchmark data set called Zachary karate club which is known to have two communities. It should be noted that there are no benchmark data sets available for checking overlapping communities. Visually we can see that at least two nodes 3 and 10 may be considered to be overlapping for Zachary karate club. We would like to check this hypothesis with our algorithms.
+
+		 The Algorithm \ref{algo:consensus} gave (3,10,14,20,24) and Algorithm \ref{algo:connectivity} gave (3,10,24,28,32) as overlapping nodes of the communities. Both the algorithms detect 3 and 10 as overlapping nodes satisfying the prediction.  Newman's edgebetweenness algorithm outputs four communities as seen in figure \ref{fig:Z-ebc}, with all the seven nodes 3, 10, 14, 20, 24, 28 and 32 detected by the two algorithms in the overlapping regions of a pair of communities.  3 and 10 are clearly between the major communities but 24 seems to be in the overlapping region of communities coloured by blue and yellow. If we observe in the figures \ref{fig:Z-ebc}-\ref{fig:Z-wt},  the communities of LEV,  ML, OPT and WT node number 24 is in the boundary of that community and sharing majority of its connection with other communities as shown by four out of seven algorithms. From this explanation we can conclude that three nodes (3, 10, 24) can certainly be designated as overlapping.
+
+The algorithms do give satisfactory results. We need to implement these algorithms on larger bench mark data sets for validation which is carried out in the next chapter. \\ 
+
+		 In the next chapter we implement these algorithms on three benchmark datasets and three synthetic datasets. 
+		

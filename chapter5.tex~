@@ -1,0 +1,18 @@
+\section{Conclusions}
+Overlapping community detection in  social networks finds several applications: to find the people from different places who are gathered at a common venue; in social network analysis; in discovering the total structure of the communities etc. 
+
+	In this thesis, we proposed two novel overlapping community discovery algorithms based on the idea of consensus clustering. Different clustering algorithms give different ways of partitioning the same data set and taking consensus of these algorithms would give a new clustering of the data that maximizes on the clustering quality of different algorithms. In social networks, community discovery is an important problem and many algorithms have been proposed in the literature. Most of these algorithms assume disjoint communities and divide the data forcefully putting some points into one of the communities. On the other hand, individuals of diverse interests and web pages corresponding to inter-disciplinary areas belong to more than one community and detecting these overlapping nodes is an interesting problem.
+
+ We approach the problem of identifying these nodes from two points of view. If we discover the nodes that lie within a core of a community, then the remaining nodes will either belong to more than one community or simply on the periphery of a community, a kind of a recluse loosely belonging to a community, not interacting with any one in particular. Based on this idea we discover core members of communities based on the consensus given by the existing community discovery algorithms. Another way of approach is to directly detect nodes that are interacting with many nodes of more than one community. Again apply consensus to see if these nodes are considered overlapping by majority of the algorithms.
+
+In order to implement our algorithms, we need to implement the existing community discovery algorithms from the literature. For this purpose, we choose the implementations available in the software tool called \emph{RStudio} (igraph package) of the seven community discovery algorithms, namely Edge betweenness algorithm, Fastgreedy algorithm, Infomap algorithm, Leading eigenvector algorithm, Multi level algorithm, Optimal algorithm and Walktrap algorithm. 
+
+Our proposed algorithms are implemented on several bench mark datasets. On the small data sets, the overlapping nodes are visually seen and detected correctly by our algorithms. As a negative compliance, we tested on a synthetic data set that is designed to have only disjoint communities and our algorithms do give a result of nearly empty overlapping region. Finally, we design two data sets using the App provided by Facebook in order to investigate the efficacy of our algorithms. We find that ....
+%%%SDBConclusions to be understood first and written in previous chapter as well as here	  
+
+%---------------------------------------------------------------------------------------------------------------------------------------
+
+\section{Future Work}
+	
+	Overlapping community discovery is a crucial part to understand the network structure. The whole presentation can be made rigorous by giving definitions for overlapping nodes and proving that the algorithms actually detect the overlapping nodes as per the definition. The algorithms proposed have a limitation in terms of the time-complexity. The algorithms crucially depend on implementing several community discovery algorithms instead of tackling the problem directly. Imposing 100\% consensus seems to be too hard. Experimentation with different threshold values of consensus gives varying results. This issue needs to be investigated further. 
+	

@@ -1,0 +1,140 @@
+%\section{Basic Idea of Algorithm}
+	We adopt the approach of Consensus Clustering to detect overlapping communities. In the context of clustering of nodes, different ways of  clustering of nodes  may be obtained by different algorithms. Also, as an internal parameter like $K$ in $K$-Means algorithm is changed, different clusterings are obtained. In order to choose a single clustering that agrees most with the other clusterings, the idea of consensus clustering was  proposed by \cite{}. 
+	
+	
+	%%Briefly literature on consensus clustering
+	\section{Motivation}
+	We adopt these ideas behind consensus clustering to the context of overlapping community discovery. Since  existing community discovery algorithms attach a community label to each node, can  we check if majority of algorithms agree that a pair of nodes belongs to a specific community then those two nodes belong to that community. 
+	
+	The nodes (of degree$>$1) for which the algorithms do not form a consensus are considered to be overlapping nodes. 
+
+\section{Consensus Clustering Description}
+	Consensus means general agreement. Consensus clustering means some particular number of algorithms (i.e 100\%, 85\%,... of the algorithms) among all algorithms says that a pair of nodes belongs to same community then it is been considered that the pair of nodes is belong to that community. In this method initially we have to decide that how much consensus (i.e percentage of algorithms, generally it is been considered majority of the algorithms) do we have to consider for consensus clustering approach.  
+
+\section{Algorithm based on Consensus Clustering}\label{consensus_clustering}
+	\begin{algorithm}[H]
+		\caption{Overlapping community discovery using consensus clustering.}
+		\label{algo:consensus}
+		\textbf{Input:} Community labels obtained from  $n$ community discovery algorithms on a graph $G=(V,E)$, $|V| = m$\\
+		\textbf{Output:} overlapping nodes.
+		\begin{algorithmic}[1]
+			\STATE read the input file and save as $A(i,j)= $community labels given to node $i$ by the algorithm $j$
+			%\STATE read the input file and save it into a two dimension array $A_{m \times n}$. Where $m$ is the number of nodes and $n$ is the number of algorithms.
+			\STATE $M(i,j) = 0$  for each $i,j = 1,2,...,m$
+			\FOR {$k = 1,2,...,n$}
+				%\FOR {each label $l$, where $l = 1,2,...n$}
+					\IF {$A(i,k) = A(j,k)$}
+						\STATE $count(i,j) ++$
+						%\STATE $count ++$
+					\ENDIF
+				%\ENDFOR
+				\IF {$count = n$}
+					\STATE $M(i,j) = 1$
+					%\STATE $v_i,v_j$ are co-clustered.
+				\ENDIF
+			\ENDFOR
+			\FOR {$i = 1,2,...,m$}
+				\STATE $G_i = \{i\}$
+				\FOR {$j = 1,2,...,m$}
+					\IF {$M(i,j)=1$}
+						\STATE $G_i = G_i \cup \{j\}$
+					\ENDIF
+				\ENDFOR
+			\ENDFOR
+			\FOR {$i=1,2,...,m$}
+				\IF {$length(G_i) = 1$ \&\& $degree(i) > 1$}
+					\STATE node $i$ is overlapping node
+				\ENDIF
+			\ENDFOR
+		\end{algorithmic}
+	\end{algorithm}
+	
+	\subsection{Implementation and Analysis on Zachary network}\label{zacharylabelsdescription}
+	Zachary dataset collected from the members of a university karate club by Wayne Zachary. It has 34 nodes and 78 edges. We applied nine community discovery algorithms Edge betweenness, Fastgreedy, Infomap, Multi level, Label propagation, Leading eigenvector, Optimal, Spinglass, Walktrap algorithm in a software package called R (RStudio, igraph package used for statistical analysis of data including networks). Among all these algorithms community labels of Label propagation algorithm and Spinglass algorithm community labels are getting changed differently with different number of executions, community labels of all remaining algorithms are same for every execution. The node numbers and its various community labels are shown in the below table.
+	
+	\begin{center}
+		\begin{tabular}{| c | c | c | c | c | c | c | c |}
+			\hline
+			Node & EBC & FG & INF & LEV & ML & OPT & WT \\ \hline
+			1 & 1 &	1 & 1 &	2 & 1 & 2 & 1 \\ 
+			2 & 1 & 3 & 3 & 2 & 1 & 2 & 1 \\ 
+			3 & 2 & 3 & 3 & 2 & 1 & 2 & 2 \\ 
+			4 & 1 & 3 & 3 & 2 & 1 & 2 & 1 \\ 
+			5 & 3 & 1 & 1 &	1 & 2 &	3 & 5 \\ 
+			6 & 3 &	1 & 1 &	1 & 2 &	3 & 5 \\ 
+			7 & 3 &	1 & 1 &	1 & 2 &	3 & 5 \\ 
+			$\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+			$\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+			$\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\ 
+			34 & 4 & 2 & 2 & 4 & 3 & 1 & 3 \\ \hline  			
+		\end{tabular}
+		\captionof{table}{Zachary nodes \& its community labels}
+		\label{table:zacharycommunitieslabels}		
+	\end{center}	
+	
+	In the above table first column represents node numbers of Zachary network and remaining seven columns represents community labels of that algorithm.
+	
+	EBC: Edge betweenness centrality algorithm
+	
+	FG : Fastgreedy algorithm
+	
+	INF: Infomap algorithm
+	
+	LEV: Leading eigenvector algorithm
+	
+	ML : Multi level algorithm
+	
+	OPT: Optimal algorithm
+	
+	WT : Walktrap algorithm
+	
+	As it is explained in the algorithm, the input file contains data in the format of $nodes \times algorithms$. Consider nodes one and two, their labels in FG and INF is different and remaining all other algorithms are the same.  It means nodes one and two are co-clustered in five algorithms out of seven algorithms. In the same way nodes one and three are co-clustered in three algorithms out of seven algorithms. Consider nodes five, six and seven its labels in all the algorithms are the same, it means all these three nodes are co-clustered in all algorithms (i.e. 100\% of the algorithms) this can be considered 100\% consensus. In the same way each pair of nodes considered and checked whether they are co-clustered in all algorithms (i.e. 100\%consensus) or some percentage of algorithms (could be adjusted based on the requirement). All these co-clustered pairs will be written into a file and make groups of all the nodes which are co-clustered. If any node is not co-clustered with any other node and its degree is greater than one then the node is overlapping node.
+	
+	This approach is implemented on Zachary network and is being observed that there are five nodes (3,10,14,20,24) in overlapping.
+	
+\section{Algorithm based on Connectivity Consensus}\label{connectivity_consensus}
+	Here connectivity represents the edge connection from one node to another node. It is two step process to check connectivity consensus. 
+	
+	\textbf{Step1: }For a fixed algorithm for a node $a$ if majority of its neighbours of node $a$ belong to different communities.
+	
+	\textbf{Step2: }If a node $a$ and its neighbours do not belong to the same community by majority of the algorithms then it is to be considered that the node $a$ is overlapping node. 
+	
+	\begin{algorithm}[H]
+		\caption{Overlapping community discovery using connectivity consensus.}
+		\label{algo:connectivity}
+		\textbf{Input:} graph $G(V,E)$ edge list and a file consists community labels of each algorithm. \\
+		\textbf{Output:} overlapping nodes.
+		\begin{algorithmic}[1]
+			\STATE $|V| = m$, $|E| = n$, $k$ = number of algorithms and $edge(i,j)$ = edge between nodes $i$ and $j$.
+			\STATE calculate degree of each node.
+			\FOR {$i = 1$ to $m$}
+				\STATE $c = 0$, $count_1 = 0,count_2 = 0,...., count_k = 0$.
+				\FOR {$j = 1$ to $m$}
+					\IF {$edge(i,j) = TRUE$}
+						\FOR {$l = 1$ to $k$}
+							\IF {$label_l(i) != label_l(j)$}
+								\STATE $count_l ++$
+							\ENDIF
+						\ENDFOR
+					\ENDIF
+				\ENDFOR
+				\FOR {$l = 1$ to $k$}
+					\IF {$degree(i) > 1 \&\& count_l >= \lceil degree(i)/2 \rceil $}
+						\STATE $c ++$
+					\ENDIF
+				\ENDFOR
+				\IF {$c >= \lceil k/2 \rceil $}
+					\STATE print $i$.
+				\ENDIF
+			\ENDFOR
+		\end{algorithmic}
+	\end{algorithm}	
+	
+	\subsection{Implementation and Analysis on Zachary network}
+		
+		Zachary network nodes and its community labels are described in the section\ref{zacharylabelsdescription}.
+		 
+		As it is explained in the algorithm input file contains data in the format $nodes \times algorithms$. Take every individual node and check all its neighbours community labels. We checked each individual node $a$ for a fixed algorithm, if majority of its neighbours (we considered minimum 50\% of its neighbours) community labels are not same (i.e. not co-clustered) and check for all the remaining algorithms if it happens with majority of the algorithms (we considered minimum 50\% of algorithms) and the node's degree is  greater than one then the node is considered overlapping node.
+	
+		This approach is implemented on Zachary network and is being observed that there are five nodes (3,10,24,28,32) in overlapping.
+
