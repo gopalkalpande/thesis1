@@ -26,8 +26,7 @@ The data is collected prior from 2013 to 2018 for the historical stock price of 
 			
 \item \textbf{Parameters: } W$_{f}$, b$_{f}$, W$_{i}$, b$_{i}$, W$_{c}$,  b$_{c}$, W$_{o}$, b$_{o}$ 
 
-\item \textbf{Loss Function: } \begin{equation}Mean Squared Error (MSE) =  \frac{1}{n}\Sigma_{i=1}^{n} (Predicted\_Y_{i} - Y_{i})^2
- \end{equation}
+\item \textbf{Loss Function: } \begin{equation}Mean Squared Error (MSE) =  \frac{1}{n}\Sigma_{i=1}^{n} (Predicted\_Y_{i} - Y_{i})^2 \end{equation}
 
 \item \textbf{Algorithm: } Adam is the algorithm used for learning the parameters for the LSTM model.
 
@@ -38,7 +37,7 @@ The data is collected prior from 2013 to 2018 for the historical stock price of 
 
 \begin{algorithmic}[1] 
 						
-\STATE Parameter Initialization: {strategy = Uniform} 
+\STATE Parameter Initialization: \{strategy = Uniform\} 
 
 \STATE $\emph{epoch} \gets Positive\_Integer$
 
@@ -98,20 +97,45 @@ The hyper-parameters that were fine tuned during the experiment for better perfo
 %\paragraph{}
 The architecture of the model used for experimentation is as follows:
 
-				\begin{center}
-				\includegraphics[width=\linewidth]{figures/Model-Sumary.jpg}	
-				\captionof{figure}{The architecture of the LSTM model}
-				\label{fig: The architecture of the LSTM model}
-				\end{center}
+%				\begin{center}
+%				\includegraphics[width=\linewidth]{figures/Model-Sumary.jpg}	
+%				\captionof{figure}{The architecture of the LSTM model}
+%				\label{fig: The architecture of the LSTM model}
+%				\end{center}
 
 
+\begin{table}[h!]
+  \begin{center}
+    \caption{The architecture of the LSTM model}
+    \label{tab:The architecture of the LSTM model}
+    \begin{tabular}{l|l|l} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \hline
+      \textbf{Layer (type)} & \textbf{Output Shape} & \textbf{Param \#}\\
+	\hdashline
+	\hdashline
+      lstm\_40 (LSTM) & (None, 22, 512) & 1058816\\
+	\hline
+      dropout\_40 (Dropout) &  (None, 22, 512) & 0\\
+	\hline
+      lstm\_41 (LSTM) & (None, 512) & 2099200 \\
+	\hline
+      dropout\_41 (Dropout) & (None, 512) & 0 \\
+	\hline
+      dense\_39 (Dense) & (None, 64) & 32832 \\
+	\hline
+      dense\_40 (Dense) & (None, 1) & 65 \\
+	\hdashline
+	\hdashline
+	\multicolumn{3}{l}{Total params: 3,190,913} \\
+	\multicolumn{3}{l}{Trainable params: 3,190,913} \\
+	\multicolumn{3}{l}{Non-trainable params: 0} \\
+	\hline
+    \end{tabular}
+  \end{center}
+\end{table}
 
-After training the model we have tested the model on unseen test data and the MSE is as follows:
-\begin{itemize}
-\item MSE on Train Data: 0.00128 MSE
-\item MSE on Test Data: 0.00230 MSE
 
-\end{itemize}
+%\end{itemize}
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/test-data-results.jpg}	
 				\captionof{figure}{Plot showing of Actual and Predicted values}
@@ -131,8 +155,23 @@ The total time taken by the model to train is 1min 9 sec.
 %--------------------------------------------------------------------------------
 \section{Comparative Analysis} 
 
+After training the LSTM model we have tested the model on unseen test data and the MSE is as follows:
+\begin{itemize}
+\item MSE on Train Data: 0.00128 MSE
+\item MSE on Test Data: 0.00230 MSE
 
+The predictions of ARIMA and Auto-ARIMA models were taken into consideration for comparison with predictions of LSTM model. 
+\begin{itemize}
+\item MSE on Test Data of ARIMA Model:  0.576 MSE
+\item MSE on Test Data of Auto-ARIMA Model:  0.695 MSE
+\end{itemize}
+				\begin{center}
+				\includegraphics[width=\linewidth]{figures/Comp-ARIMA-LSTM.jpg}	
+				\captionof{figure}{Comparison of Prediction between ARIMA Model and LSTM Model with Actual Values}
+				\label{fig: Comparison of Prediction between ARIMA Model and LSTM Model with Actual Values}
+				\end{center}
+\end{itemize}
 %--------------------------------------------------------------------------------
 \section{Conclusion }
 
-In this chapter we have discussed about the model architecture, its parameters, and tuning the parameters for optimization of performance.
+In this chapter we have discussed about the model architecture, its parameters, and tuning the parameters for optimization of performance of the model. The LSTM model performed far better than the statistical models.

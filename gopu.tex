@@ -28,8 +28,10 @@
 \usepackage{hyperref}
 %\usepackage{capt-of}
 \usepackage{multicol}
+\usepackage{arydshln}
 \usepackage{titlesec}
 \usepackage[T1]{fontenc}
+\DeclareUnicodeCharacter{0301}{\'{e}}
 
 
 
@@ -97,16 +99,25 @@
 		\begin{acknowledgments}
 			\input{ack.tex}
 		\end{acknowledgments}
-	
+
+	%	\begin{notations}
+		%	\input{notations.tex}
+		%\end{abstract}	
+
 		\begin{abstract}
 			\input{abstract.tex}
 		\end{abstract}
 	
+
 		\tableofcontents
 
 		\listoffigures
 
 		\listoftables
+
+
+		
+	%	\notations	
 	
 	\end{frontmatter}
 %--------------------------------------------------------------------------------------------------------------------------------------
@@ -132,6 +143,6 @@
 	
 	\clearpage
 	\addcontentsline{toc}{chapter}{Bibliography}
-	%\input{bibliography.tex}
+	\input{bibliography.tex}
 	
 \end{document}

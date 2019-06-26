@@ -47,7 +47,7 @@ The exposure of banks to these various risks and as the risks is also increasing
 	
 \section{Asset Liability Management (ALM)}
 
-	An asset is a valuable entity/resource that a person/organization owns for generating income.  And the liability is a valuable entity/resource that a person/organization needs to pay for. At any given point of time, total assets must be greater than the total liability. To balance the equation the concept of asset liability management had emerged. 
+	An asset is a valuable entity/resource that a person/organization owns for generating income.  And the liability is a valuable entity/resource that a person/organization needs to pay for. At any given point of time, total assets must be greater than the total liability. To balance the equation the concept of asset liability management \cite{11} had emerged. 
 
 	In ALM we perform periodic monitoring of risk exposures involving collecting and analyzing the information in order to have the ability to anticipate, forecast and act so as to structure banks business to profit. ALM also involves transforming the asset and liability portfolio in a dynamic way to manage the risks which involve judgment and decision making.
 
@@ -112,11 +112,11 @@ The exposure of banks to these various risks and as the risks is also increasing
 
 \section{Literature Survey}
 
-	For first problem the literature survey done is: Hongxi Li et al. (2017) assess for both positive and negative duration gap to increase the net value of bank when interest rates fluctuate favorably\cite{}. Nalan Gülpinar et al. (2013) uses the Vector Autoregressive process to model time-varying investment opportunities\cite{}. Teng Fan et al. (2011) studied the interest rate risk of Chinese life insurers’ liability\cite{}. Mounika, P et al. (2011) have addressed the problem of single objective optimization for the maximization of wealth\cite{}. Chaudhury, Rahul et al. (2014) created a fuzzy rule-based asset liability optimization model\cite{}.
+	For first problem the literature survey done is: Hongxi Li et al. (2017) assess for both positive and negative duration gap to increase the net value of bank when interest rates fluctuate favorably\cite{4}. Nalan Gülpinar et al. (2013) uses the Vector Autoregressive process to model time-varying investment opportunities\cite{3}. Teng Fan et al. (2011) studied the interest rate risk of Chinese life insurers’ liability\cite{1}. Mounika, P et al. (2011) have addressed the problem of single objective optimization for the maximization of wealth\cite{16}. Chaudhury, Rahul et al. (2014) created a fuzzy rule-based asset liability optimization model\cite{17}.
 
-	For the second problem, the literature survey done is: Ashish Vaswani et al. (2017) proposed an attention mechanism for machine translation\cite{}. Yao Qin et al. (2017) proposed a DA-RNN. It serves the purpose of attention to time series and encoding information of long sequences\cite{}. Jian Liu et al. (2017) assesses the correlation between stock price movement with relevance to events happening in the world\cite{}. Hao Li et al. (2018) proposed the MI-LSTM using attention which filters noise and extracts information\cite{}. Huicheng Liu (2018) used attention based RNN for leveraging the news to predict stock price\cite{}.
+	For the second problem, the literature survey done is: Ashish Vaswani et al. (2017) proposed an attention mechanism for machine translation\cite{2}. Yao Qin et al. (2017) proposed a DA-RNN. It serves the purpose of attention to time series and encoding information of long sequences\cite{6}. Jian Liu et al. (2017) assesses the correlation between stock price movement with relevance to events happening in the world\cite{7}. Hao Li et al. (2018) proposed the MI-LSTM using attention which filters noise and extracts information\cite{8}. Huicheng Liu (2018) used attention based RNN for leveraging the news to predict stock price\cite{9}.
 
-In this chapter we describe a few of the algorithms for our problems whose knowledge we assume  in the dissertation. The implementation of some of these  algorithms is available in a software package called \emph{statsmodels, pandas, sklearn} \cite{} which are also necessary statistical analysis.
+In this chapter we describe a few of the algorithms for our problems whose knowledge we assume  in the dissertation. The implementation of some of these  algorithms is available in a software package called \emph{statsmodels, pandas, sklearn} \cite{5} \cite{12} which are also necessary statistical analysis.
 
 
 %--------------------------------------------------------------------------------------------------------------------------------------
@@ -167,7 +167,7 @@ In this chapter we describe a few of the algorithms for our problems whose knowl
 
 		\paragraph{Dickey-Fuller Test (DF Test)}
 
-		In statistics, there is a unit root test that is used to check the given TS is non-Stationary or not. DF Test is the most widely used unit root test. In statistical testing we have to make the hypothesis, the same in this test are:
+		In statistics, there is a unit root test that is used to check the given TS is non-Stationary or not. DF Test \cite{18} is the most widely used unit root test. In statistical testing we have to make the hypothesis, the same in this test are:
 
 H0:	TS is non-Stationary.
 H1:	TS is Stationary.
@@ -189,7 +189,7 @@ For the data we are dealing with the results of the DF Test are as follows:
 		To make the TS stationary we need to eliminate the trend and seasonality from the non-stationary TS. The first and the widely used approach to do it is Transforming the data using a log transform. Then use either Differencing or Decomposition. Let’s see them one by one:
 
 		\paragraph{Log Transform}
-			Taking the log of the data changes the recurrent pattern to a linear pattern and also stabilizes the variance of the data.
+			Taking the log of the data changes the recurrent pattern to a linear pattern and also stabilizes the variance of the data \cite{18}.
 
 		\begin{center}
 		\includegraphics[width=\linewidth]{figures/DF-Test-Results-for-log-transformed-Closing-price.jpg}	
@@ -216,7 +216,7 @@ For the data we are dealing with the results of the DF Test are as follows:
 				
 
 			The addition/multiplication of these three components gives back the original data or TS. The multiplicative decomposition is used when the trend/seasonality of data is proportional to the time.
-			The procedure of classical multiplicative decomposition is as follows:
+			The procedure of classical multiplicative decomposition \cite{18} is as follows:
 
 				\begin{algorithm}[H]
 					\caption{Classical Multiplicative Decomposition}
@@ -255,7 +255,7 @@ For the data we are dealing with the results of the DF Test are as follows:
 
 		\paragraph{Differencing}
 
-			In this approach, we compute the difference between the data point at the current instance to the previous instance. Applying the DF test on the differencing of the log-transformed data gives the following results:
+			In this approach, we compute the difference between the data point at the current instance to the previous instance. Applying the DF test on the differencing \cite{18} of the log-transformed data gives the following results:
 
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/DF-Test-Results-for-log-transformed-Closing-price-after-differencing.jpg}	
@@ -285,7 +285,7 @@ And the loss function: Mean Squared Error Loss as the problem is a regression pr
 
 \subsubsection{Recurrent Neural Network (RNN)}
 
-Artificial neural networks have a special class of neural networks that works best with the input sequences, called the RNN. As stated in the name the word Recurrent stands for the repeating structure of the neurons with respect to time/sequence based input to them until the whole input sequence is over. Unlike other neural network architectures where we need to feed whole input at once to the input neurons; in RNN, we can feed the sequence one by one to the input neurons and the input gets processed in the same recurrent fashion throughout all the recurrent layers. The output of the neuron after processing the (t-1)$^{th}$ input sequence is fed again to the same neuron with the (t)$^{th}$ sequence of the input so that it can remember the whole input sequence. The idea basically is to remember the past, add it to the present and predict the future. The RNN looks as shown in the following Fig.
+Artificial neural networks have a special class of neural networks that works best with the input sequences, called the RNN. As stated in the name the word Recurrent stands for the repeating structure of the neurons with respect to time/sequence based input to them until the whole input sequence is over. Unlike other neural network architectures where we need to feed whole input at once to the input neurons; in RNN \cite{12}, we can feed the sequence one by one to the input neurons and the input gets processed in the same recurrent fashion throughout all the recurrent layers. The output of the neuron after processing the (t-1)$^{th}$ input sequence is fed again to the same neuron with the (t)$^{th}$ sequence of the input so that it can remember the whole input sequence. The idea basically is to remember the past, add it to the present and predict the future. The RNN looks as shown in the following Fig.
 
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/An-unrolled-recurrent-neural-network.jpg}	
@@ -313,7 +313,7 @@ Where wi is the weight associated with the inputs and the wo is the weights asso
 
 \paragraph{Problems of Long Term Dependency}
 
-If the input sequences are small then the RNN is the best choice, but what if the input sequence is long, can RNN successfully learn the information from the past and using present information predict the future? The answer is No. In RNN we don’t have an equation for how much to remember from the past or what to remember from the past. This is called the problem of long term dependency as shown in Fig.4.4. If the output ht+1 depends on the input X1 then RNN can’t handle this dependency. The solution to this is the improved version of RNN discussed later.
+If the input sequences are small then the RNN is the best choice, but what if the input sequence is long, can RNN successfully learn the information from the past and using present information predict the future? The answer is No. In RNN we don’t have an equation for how much to remember from the past or what to remember from the past. This is called the problem of long term dependency \cite{12} as shown in Fig.4.4. If the output ht+1 depends on the input X1 then RNN can’t handle this dependency. The solution to this is the improved version of RNN discussed later.
 
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/Problem-of-Long-Term-Dependency.jpg}	
@@ -325,7 +325,7 @@ If the input sequences are small then the RNN is the best choice, but what if th
 
 \paragraph{Long Short Term Memory (LSTM)}
 
-The word LSTM can be interpreted as storing the Short information in the Memory for the Long Term. This happens due to the functional change in the cell of RNN. Instead of the single neuron function in the RNN, the LSTM has four neurons connected in a circuit creating three gates: input gate, forget gate and the output gate. Other than these gates there is a cell state which computes the update for the next state. The following are the notations that will be used to describe the architecture of the LSTM:
+The word LSTM \cite{12} can be interpreted as storing the Short information in the Memory for the Long Term. This happens due to the functional change in the cell of RNN. Instead of the single neuron function in the RNN, the LSTM has four neurons connected in a circuit creating three gates: input gate, forget gate and the output gate. Other than these gates there is a cell state which computes the update for the next state. The following are the notations that will be used to describe the architecture of the LSTM:
 
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/Notations.jpg}	
@@ -435,7 +435,7 @@ For LSTM: \begin{equation} h_{t}, C_{t} = LSTM(h_{t-1}, C_{t-1}, X_{t}) \end{equ
 
 \paragraph{Encoder - Decoder Models (Sequence to sequence models)}
 
-The Encoder - Decoder model is very much useful in a lot of applications. The Encoder which is a neural network works for computing the representation of the input while the decoder which is also a neural network uses this input representation from Encoder and the target output to learn about the relation between the input and output and makes the appropriate predictions. For our problem, both encoder and decoder use the RNN/LSTM as the encoding and decoding function. The Encoder - Decoder mechanism can be represented as in Fig. below:
+The Encoder - Decoder model \cite{12} is very much useful in a lot of applications. The Encoder which is a neural network works for computing the representation of the input while the decoder which is also a neural network uses this input representation from Encoder and the target output to learn about the relation between the input and output and makes the appropriate predictions. For our problem, both encoder and decoder use the RNN/LSTM as the encoding and decoding function. The Encoder - Decoder mechanism can be represented as in Fig. below:
 
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/Sequence-to-Sequence-Model.jpg}	
@@ -454,7 +454,7 @@ Decoder: \begin{equation} C_{0} = h_{t}  \end{equation}
 
 \paragraph{Encoder - Decoder Models with attention (Sequence to sequence models with attention)}
 
-The attention is a technique which tells the decoder how much to focus on the information at the given point of time. The attention of the overall input sequence adds to 1 due to the softmax function. The Encoder - Decoder mechanism with attention can be represented as in Fig.4.13.
+The attention is a technique which tells the decoder how much to focus on the information at the given point of time. The attention of the overall input sequence adds to 1 due to the softmax function. The Encoder - Decoder mechanism with attention \cite{2}, \cite{7} can be represented as in Fig.4.13.
 
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/Attention-Model.jpg}	

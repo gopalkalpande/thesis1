@@ -7,21 +7,134 @@
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 \section{Analysis of Saving and Loan Accounts Data}
+In this we will discuss about the work on a 1999 Czech Financial Dataset with real anonymized transactions \cite{1}. The aim was to learn the concept of banking and try to find the banance between the Assets and Liabilities.
+
+\subsection{Dataset Description}
+The dataset consists of 8 files in it, but we will be using only two namely transaction and loan. The description of both the files is as follows:
+
+\begin{itemize}
+\item \textbf{Relational Transaction: }This file consist of 1056320 rows, where each row is a transaction to an account. The attributes of the transaction file are :
+
+%\begin{enumerate}
+\item[1.] Trans id: unique transaction number.
+\item[2.] Account id: unique account number.
+\item[3.] Date: date of the transaction.
+\item[4.] Type: type of transaction: credit or debit.
+\item[5.] Operation: mode of transaction: credit card withdrawl, credit in cash, ollection from another bank, withdrawal in cash, remittance to another bank.
+\item[6.] Amount: Transaction amount
+\item[7.] Balance: remaining balance after transaction
+
+\item \textbf{Relational Loan: }This file consist of 682 rows, where each row is a loan given per account. The attributes of the loan file are :
+
+%\begin{enumerate}
+%\item[1.] Account id
+%\item[2.] Date
+%\item[3.] Amount :loan amount
+%\item[4.] Duration: Duration of loan 
+%\item[5.] Payment: amount to be paid monthly.
+%\item[6.] Status : Loan account status: cleared loan, client in debt, defaulter, paying loan
+
+%\end{enumerate}
+
+\end{itemize}
+
+\subsection{Data Analysis and Results}
+
 
 \section{LPP for Optimization of Assets}
 
-\subsection{Prior Work}
+Linear Programming is the famous method used for the optimization given objective functions and constraints. In this section we will use this method for the macro optimization of assets with respect to liabilities to ensure the liquidity risk. 
+
+%\subsection{Prior Work}
 
 \subsection{Algorithm}
+The algorithm for the LPP optimization using simplex method is as follows:
+
+
+\begin{algorithm}[H]
+
+\caption{The Algorithm for LPP Optimization}
+
+\begin{algorithmic}[1] 
+						
+\STATE Objective Function: \begin{equation}Maximize  Profit =  \Sigma_{j=1}^{m} Asset_{j} -  \Sigma_{i=1}^{n} Liability_{i}\end{equation}\\
+		which can further be simplified as\\
+		\begin{equation}Maximize  G_{b} =  \sum_{a=1}^{k-1} \sum_{c=1}^{m} \{ Y_{c}^{a,b} + Y_{c}^{a,b} * IA_{c}^{a,b} * TA_{c}^{a,b} \} -  \sum_{a=1}^{k-1} \sum_{d=1}^{n} \{ X_{d}^{a,b} + X_{d}^{a,b} * IL_{d}^{a,b} * TL_{d}^{a,b}\} \end{equation}
+
+\STATE Assumption: \\a. No amount is expected to be paid or received from previous time buckets as there are no assets and liabilities in previous time bucket.\\
+b. We have 5 assets and 5 liabilites.
+	
+\STATE Constraints : \\
+
+For First Time Bucket: 
+\begin{equation} X_{1}^{1,3} + X_{2}^{1,4} + X_{3}^{1,5} +X_{4}^{1,5} + X_{5}^{1,6} + X_{1}= Y_{1}^{1,2} + Y_{2}^{1,3} +Y_{3}^{1,5} + Y_{4}^{1,6}\end{equation}
+
+For Second Time Bucket:
+\begin{equation}
+[Y_{1}^{1,2} + Y_{1}^{1,2}* IA_{1}^{1,2} * TA_{1}^{1,2}] +  X_{1}^{2,4} + X_{2}^{2,4} + X_{3}^{2,5} + X_{4}^{2,6} + X_{5}^{2,7} + G_{2} = Y_{1}^{2,3} + Y_{2}^{2,4} +  Y_{3}^{2,5} +  Y_{4}^{2,7} +  Y_{5}^{2,7} 
+\end{equation}
+
+and so on until we have time buckets left.
+
+\STATE Convert constraint inequality to equality by adding slack variables to the constraints.
+
+\STATE Use objective function and constraints of LPP to create initial Simplex table.
+
+\STATE Find out initial solution by assigning 0 to decision variable
+
+\STATE Optimality Test: \\ 
+\tab a. Calculate	c$_{j}$ - z$_{j}$  \\ 
+\tab b. If the calculated values are positive then optimal solution is the current basic solution. The greatest value column is the key column.\\ 
+\tab c. If any one value is negative then choose the greatest value corresponding variable.
+
+\STATE Feasibility Test: \\
+\tab Computr the ratios by dividing the value under XB Column by corresponding valueo of key column.  The minimum value of ratio identifies the key row. 
+
+\STATE Key Element:\\
+\tab The intersection of key column and key roe gives the key element.
+
+\STATE Updating the Table:
+\tab a. For key row use formula \begin{equation}
+New\_Value = \frac{Old\_Value}{Key\_Value}
+\end{equation}
+\tab b. For Other rows use formula:\\
+
+New\_Value = Old\_Value - $\frac{Corresponding\_key\_column\_value *  corresponding \_key\_row\_value}{Key\_Value}$ \\
+
+\STATE Repeat step 7 to 10 until all the values of c$_{j}$ - z$_{j}$ are 0 or negative.
+
+\end{algorithmic}
+
+\end{algorithm}
+
+G: Gap value\\
+Y : Asset\\
+X: Liability\\
+a: investment time bucket\\
+b: maturity time bucket\\
+c: Asset/Liability Number\\
+c$_{j}$ : (j =1,2,...n) Profit Coefficient \\
+b$_{i}$ : (i = 1,2,...m) resource limitation \\
+a$_{i,j}$ : (i = 1,2,..m) (j =1,2,...n) input output coefficient \\ 
+S$_{i}$ : Slack variable \\ 
+B : Basic variable in the basis \\ 
+C$_{Bi}$ : Coefficient of current basic variable in objective function \\ 
+c$_{j}$ : Coefficient of variables in objective function \\ 
+z$_{j}$ : $\sum$ a$_{i,j}$C$_{Bi}$ where i =1,2,...m and j = 1,2,..., n+m \\ 
+X$_{B}$ :  Solution Values of basic variables \\ 
+c$_{j}$ - z$_{j}$ : Max value of this gives key column. \\ 
+Ratio$_{i}$ : Min value of this gives key row, leading to selection of key element \\ 
+
 
 \subsection{Illustration}
 
-\subsection{Computational Complexity}
 
-\subsection{Comparative Analysis}
+
+\subsection{Computational Complexity}
+The worst case complexity of Simplex Method is Exponential but in practice it's complexity is in polynomial time.
 
 \subsection{Conclusion }
-
+In this chapter we have addressed the problem of liquidity risk using single objective optimization method. Also we were able to find the assets from the saving accounts for the bank.
 
 
 
