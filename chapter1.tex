@@ -115,7 +115,7 @@ Simulation of the ALM concept for bank using the 1999 Czech Financial data set a
 
 	For the second problem, the literature survey done is: Ashish Vaswani et al. (2017) proposed an attention mechanism for machine translation\cite{2}. Yao Qin et al. (2017) proposed a DA-RNN. It serves the purpose of attention to time series and encoding information of long sequences\cite{6}. Jian Liu et al. (2017) assesses the correlation between stock price movement with relevance to events happening in the world\cite{7}. Hao Li et al. (2018) proposed the MI-LSTM using attention which filters noise and extracts information\cite{8}. Huicheng Liu (2018) used attention based RNN for leveraging the news to predict stock price\cite{9}.
 
-In this chapter we describe a few of the algorithms for our problems whose knowledge we assume  in the dissertation. The implementation of some of these  algorithms is available in a software package called \emph{statsmodels, pandas, sklearn} \cite{5} \cite{12} which are also necessary statistical analysis.
+Below are the existing algorithms which helps as basis for problems we are studying. The implementation of some of these methods is available in a software package called \emph{statsmodels, pandas, sklearn} \cite{5} \cite{12}, which are also necessary statistical analysis.
 
 
 %--------------------------------------------------------------------------------------------------------------------------------------
@@ -123,9 +123,9 @@ In this chapter we describe a few of the algorithms for our problems whose knowl
 \subsection{Time Series Analysis for Stock Price Prediction}
 
 	\subsubsection{Introduction}
-		The Time Series (TS) is defined as the collection of information or data at a regular interval of time. This TS contains the time-dependent data which may contain the seasonality (i.e the deviation in data at specific time frame) and trend (i.e. the changing mean with respect to time) in it; i.e. the change in data with respect to specific time frame.
+		The Time Series (TS) is defined as the collection of information or data at a regular interval of time. This TS contains the time-dependent data which may contain the seasonality (i.e the deviation in data at specific time frame) and trend (i.e. the changing mean with respect to time) in it; which is the change in data with respect to specific time frame.
 
-		Ex. The Stock Data is collected per day at the start of the day, at the end of the day, the highest value of the day and the lowest value of the day.
+		Ex. The Stock Data is collected per day i.e. the value of stock at the start of the day, at the end of the day, the highest value of the day and the lowest value of the day.
 
 		\begin{center}
 		\includegraphics[width=\linewidth]{figures/Ex_of_Time_Series_data_of_a_stock.jpg}	
@@ -137,7 +137,7 @@ In this chapter we describe a few of the algorithms for our problems whose knowl
 	
 	\subsubsection{Issues with non-Stationarity of Data}
 	
-		The data is said to be stationarity if the mean and variance of the data is stable over time and the time-independent autocovariance. The statistical models which deal with the TS data have a premise that the data should be stationary. Because of this premise, we need to convert non-stationary data to stationary data. But how to check the data is stationary or not? There are two ways to do it:
+		The data is said to be stationary if the mean and variance of the data is stable over time and it has time-independent autocovariance. The statistical models which deal with the TS data have a premise that the data should be stationary. Because of this premise, we need to convert non-stationary data to stationary data. But how to check the data is stationary or not? There are two ways to do it:
 		\begin{itemize}
 		
 			\item Plotting the Rolling Statistics
