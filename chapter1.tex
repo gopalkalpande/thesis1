@@ -6,11 +6,11 @@
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 
-In this chapter, first, we learn about the risks associated with banking. Then we will discuss Asset Liability Management (ALM) a solution over risk associated with banking and ALM for banks. Then we will discuss project objectives and problem statement. Then a glance over banking standards and the literature survey.\cite{}
+In this chapter, first, we learn about the risks associated with banking. Then we will discuss Asset Liability Management (ALM) a solution to minimize risk associated with banking. Then we will discuss project objectives and problem statement. Then a glance over banking standards and the literature survey.\cite{}
 
 \section{Risks Associated with Banking}
 
-The term risk can be defined in association with banking as the exposure of to loss.  The several risks associated with banking are viz.,
+The term risk can be defined in association with banking as the exposure to loss.  The several risks associated with banking are viz.,
 Operational risk, Credit risk, Liquidity risk, Market risk, Foreign exchange risk, Interest rate risk and Information risk.
 
 	\subsection{Operational Risk}
@@ -19,7 +19,7 @@ Operational risk, Credit risk, Liquidity risk, Market risk, Foreign exchange ris
 
 	\subsection{Credit Risk}
 
-		It is defined as the loss occurred due to failure of the borrower to repay to bank on the acknowledged terms. There is uncertainty about the repayment of dues and in the repayment in the agreed time frame. It happens due to borrowers lack of income, failure of business or reluctance to repay and lack of underwriting frameworks.
+		It is defined as the loss occurred due to failure of the borrower to repay to bank on the agreed terms. There is uncertainty about the repayment of dues and in the repayment in the agreed time frame. It happens due to borrowers lack of income, failure of business or reluctance to repay and lack of underwriting frameworks.
 
 	\subsection{Market risk}
 
@@ -41,7 +41,7 @@ Operational risk, Credit risk, Liquidity risk, Market risk, Foreign exchange ris
 
 		It is characterized as the lack of liquid cash available in hands of the bank to finance its day to day transactions or the situation where bank runs out of cash. Failure in managing the liquidity risk can lead to the destruction of the banks' reputation and losing its trust among customers.
 
-The exposure of banks to these various risks and as the risks is also increasing with the liberalisation and increasing merger of local markets and global markets. Due to the deregulated operational space and the various products that requires the interest rates to be determined with the need to maintain the proper ratios between the profitability, spread and long term growth. Due to all these reasons, we need to perform Asset Liability management.
+The exposure of banks to these various risks and as the risks are also increasing with the liberalisation and increasing merger of local markets and global markets. Due to the deregulated operational space and the various products that requires the interest rates to be determined with the need to maintain the proper ratios between the profitability, spread and long term growth. Due to all these reasons, we need to perform Asset Liability management.
 
 
 	
@@ -60,10 +60,10 @@ The exposure of banks to these various risks and as the risks is also increasing
 	As the business of banking involves lot of risks, the main problem of banking becomes risk management and the procedure to do so is ALM. The three pillars on which ALM resides are follows:
 
 	\subsection{ALM Information System}
-		The risk policies and tolerance limits need to be specified by ALM information system. Information is the key to ALM process which is now available due to the computerization of all banks and its respective branches. It also includes performing experimentation in a branch and studying its effects. If the results are positive then replicating the changes to other branches.
+		The risk policies and tolerance limits need to be specified by ALM information system. Information is the key to ALM process which is now available due to the computerization of all banks and its respective branches. It also includes performing experimentation in a specific branch and studying its effects. If the results are positive then replicating the changes to other branches.
 
 	\subsection{ALM Organization}
-		For risk management to be successful the need is of the strong commitment of the senior management to take strategic decisions and integrate the basic operations. The Asset Liability Committee (ALCO) is formed for performing the above-mentioned tasks. It includes the CEO and the senior management of the bank, and their task is to decide business strategies with respect to banks budget and decide risk management objectives according to assets and liabilities. 
+		For risk management to be successful the need is strong commitment of the senior management to take strategic decisions and integrate the basic operations. The Asset Liability Committee (ALCO) is formed for performing the above-mentioned tasks. It includes the CEO and the senior management of the bank, and their task is to decide business strategies with respect to banks budget and decide risk management objectives according to assets and liabilities. 
 
 	\subsection{ALM Processes}
 		The ALM Processes are as shown in the following figure:
@@ -75,7 +75,7 @@ The exposure of banks to these various risks and as the risks is also increasing
 		\end{center}
 		
 
-		All the risks discussed in section 1.1 are the problems to be handeled by the ALM Processes. The assets and liabilities of a bank involve the following:
+		All the risks discussed in section 1.1 are the problems to be handled by the ALM Processes. The assets and liabilities of a bank involve the following:
 
 		\begin{center}
 		\includegraphics[width=\linewidth]{figures/Components_of_Banks_Balance_Sheet.jpg}	
@@ -96,19 +96,18 @@ The exposure of banks to these various risks and as the risks is also increasing
 	
 \section{Project Objective}
 
-	Creation of strategies to stabilize financial networks i.e. banks and to improve the profitability of them from various risks. 
+	To study the strategies to stabilize financial networks i.e. banks and to improve the profitability of them from various risks. 
 
 \section{Problem Statement}
 
-	The two problems that have been tried to solve are as follows:
+	The two problems that have been studied are as follows:
 	\subsection{Liquidity Risk Management}
 
-		In the single objective cash flow optimization for ALM, we have proposed a model of Linear Programming Problem (LPP) which ensures Liquidity and Profitability. Liquidity Risk is managed by considering the flow approach and profitability is ensured by taking the objectives function to maximize the profit of a bank.
-		We have also studied and analyzed a 1999 Czech Financial dataset in search of the assets for the bank.
+Simulation of the ALM concept for bank using the 1999 Czech Financial data set and try the single objective cash flow optimization for ALM to ensures Liquidity and Profitability of the bank. 
 
 	\subsection{Prediction of Stock Price}
 
-		The Prediction of Stock Price is a typical problem of time series and we propose a deep learning based solution for future price prediction.
+		The Prediction of Stock Price is a typical problem of time series and we use a deep learning based solution for future price prediction.
 
 \section{Literature Survey}
 
@@ -293,7 +292,6 @@ Artificial neural networks have a special class of neural networks that works be
 				\label{fig: Unfolded Recurrent layer}
 				\end{center}
 
-A is the Recurrent layer of neurons, Xt is the input sequence and ht is the output of the recurrent layer
 
 Now let’s consider the Fig.4.3 which shows the activation function tanh in the neurons of recurrent layers. The equation of the recurrent layer is as follows:
 
@@ -358,13 +356,7 @@ Equation for forget gate:
 
 \begin{equation}
 	f_{t} = \sigma (W_{f} . [h_{t-1}, X_{t}] + b_{f})	
-\end{equation}•
-Where f$_{t}$ is the output of forget gate
-	W$_{f}$ is the weight associated with forget gate
-	h$_{t-1}$ is the previous state output
-	X$_{t}$ is the input to state t
-	b$_{f}$ is the bias term for forget get
-	terms in [] reflects concatenation operation.
+\end{equation}
 
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/Forget-gate.jpg}	

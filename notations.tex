@@ -1,4 +1,32 @@
-\begin{notations}
+
+A: Recurrent layer of neurons\\
+X$_{t}$: input sequence\\
+h$_{t}$: output of the recurrent layer\\
+f$_{t}$ is the output of forget gate
+W$_{f}$: the weight associated with forget gate\\
+h$_{t-1}$: the previous state output\\
+X$_{t}$: the input to state t\\
+b$_{f}$: the bias term for forget get\\
+terms in []: reflects concatenation operation\\
+$\sigma$ : Sigmoid Function\\
+tanh : hyperbolic tan function\\
+
+G: Gap value\\
+Y : Asset\\
+X: Liability\\
+a: investment time bucket\\
+b: maturity time bucket\\
+c: Asset/Liability Number\\
+c$_{j}$ : (j =1,2,...n) Profit Coefficient \\
+b$_{i}$ : (i = 1,2,...m) resource limitation \\
+a$_{i,j}$ : (i = 1,2,..m) (j =1,2,...n) input output coefficient \\ 
+S$_{i}$ : Slack variable \\ 
+B : Basic variable in the basis \\ 
+C$_{Bi}$ : Coefficient of current basic variable in objective function \\ 
+c$_{j}$ : Coefficient of variables in objective function \\ 
+z$_{j}$ : $\sum$ a$_{i,j}$C$_{Bi}$ where i =1,2,...m and j = 1,2,..., n+m \\ 
+X$_{B}$ :  Solution Values of basic variables \\ 
+c$_{j}$ - z$_{j}$ : Max value of this gives key column. \\ 
+Ratio$_{i}$ : Min value of this gives key row, leading to selection of key element \\ 
 
 
-\end{notations}
