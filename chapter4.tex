@@ -9,7 +9,7 @@
 %--------------------------------------------------------------------------------
 \section{Prior Work}
 
-Prediction of stock prices is the famous problem for several years now. In the era of deep learning various researchers have done the contribution to this topic. Hao Li et al. (2018)\cite{} proposed a Attention based Multi Input LSTM for prediction of opening price given the historical values. It uses attention mechanism for noise filtering and extracting the related information from related stocks. Yao Qin et al. (2017)\cite{} proposed a dual attention based RNN for prediction of treading index using the historical prices of 81 different stocks. The dual attention consists of the input attention mechanism for encoder and a temporal attention mechanism for decoder. Rather et al. (2015)\cite{} proposed the hybrid approach containing RNN and statistical models for prediction of stock price. 
+Prediction of stock prices is the famous problem for several years now. In the era of deep learning various researchers have made the contributions to this topic. Hao Li et al. (2018)\cite{} proposed a Attention based Multi Input LSTM for prediction of opening price given the historical values. It uses attention mechanism for noise filtering and extracting the related information from related stocks. Yao Qin et al. (2017)\cite{} proposed a dual attention based RNN for prediction of treading index using the historical prices of 81 different stocks. The dual attention consists of the input attention mechanism for encoder and a temporal attention mechanism for decoder. Rather et al. (2015)\cite{} proposed the hybrid approach containing RNN and statistical models for prediction of stock price. 
 
 %--------------------------------------------------------------------------------
 \section{Algorithm}
@@ -97,42 +97,48 @@ The hyper-parameters that were fine tuned during the experiment for better perfo
 %\paragraph{}
 The architecture of the model used for experimentation is as follows:
 
-%				\begin{center}
-%				\includegraphics[width=\linewidth]{figures/Model-Sumary.jpg}	
-%				\captionof{figure}{The architecture of the LSTM model}
-%				\label{fig: The architecture of the LSTM model}
-%				\end{center}
+				\begin{center}
+				\includegraphics[width=\linewidth]{figures/architecture-of-LSTM.jpg}	%Model-Sumary
+				\captionof{figure}{The architecture of the LSTM model}
+				\label{fig: The architecture of the LSTM model}
+				\end{center}
 
 
-\begin{table}[h!]
-  \begin{center}
-    \caption{The architecture of the LSTM model}
-    \label{tab:The architecture of the LSTM model}
-    \begin{tabular}{l|l|l} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
-      \hline
-      \textbf{Layer (type)} & \textbf{Output Shape} & \textbf{Param \#}\\
-	\hdashline
-	\hdashline
-      lstm\_40 (LSTM) & (None, 22, 512) & 1058816\\
-	\hline
-      dropout\_40 (Dropout) &  (None, 22, 512) & 0\\
-	\hline
-      lstm\_41 (LSTM) & (None, 512) & 2099200 \\
-	\hline
-      dropout\_41 (Dropout) & (None, 512) & 0 \\
-	\hline
-      dense\_39 (Dense) & (None, 64) & 32832 \\
-	\hline
-      dense\_40 (Dense) & (None, 1) & 65 \\
-	\hdashline
-	\hdashline
-	\multicolumn{3}{l}{Total params: 3,190,913} \\
-	\multicolumn{3}{l}{Trainable params: 3,190,913} \\
-	\multicolumn{3}{l}{Non-trainable params: 0} \\
-	\hline
-    \end{tabular}
-  \end{center}
-\end{table}
+%architecture-of-LSTM
+
+
+
+%\begin{table}[h!]
+%  \begin{center}
+%    \caption{The architecture of the LSTM model}
+%    \label{tab:The architecture of the LSTM model}
+%    \begin{tabular}{l|l|l} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+%      \hline
+%      \textbf{Layer (type)} & \textbf{Output Shape} & \textbf{Param \#}\\
+%	\hdashline
+%	\hdashline
+%      lstm\_40 (LSTM) & (None, 22, 512) & 1058816\\
+%	\hline
+%      dropout\_40 (Dropout) &  (None, 22, 512) & 0\\
+%	\hline
+%      lstm\_41 (LSTM) & (None, 512) & 2099200 \\
+%	\hline
+%      dropout\_41 (Dropout) & (None, 512) & 0 \\
+%	\hline
+%      dense\_39 (Dense) & (None, 64) & 32832 \\
+%	\hline
+%      dense\_40 (Dense) & (None, 1) & 65 \\
+%	\hdashline
+%	\hdashline
+%	\multicolumn{3}{l}{Total params: 3,190,913} \\
+%	\multicolumn{3}{l}{Trainable params: 3,190,913} \\
+%	\multicolumn{3}{l}{Non-trainable params: 0} \\
+%	\hline
+%    \end{tabular}
+%  \end{center}
+%\end{table}
+
+\section{Results}
 
 
 %\end{itemize}
@@ -167,8 +173,8 @@ The predictions of ARIMA and Auto-ARIMA models were taken into consideration for
 \end{itemize}
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/Comp-ARIMA-LSTM.jpg}	
-				\captionof{figure}{Comparison of Prediction between ARIMA Model and LSTM Model with Actual Values}
-				\label{fig: Comparison of Prediction between ARIMA Model and LSTM Model with Actual Values}
+				\captionof{figure}{Comparison of Prediction between ARIMA, Auto-ARIMAl and LSTM Model with Actual Values}
+				\label{fig: Comparison of Prediction between ARIMA, Auto-ARIMAl  and LSTM Model with Actual Values}
 				\end{center}
 \end{itemize}
 %--------------------------------------------------------------------------------

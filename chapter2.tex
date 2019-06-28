@@ -7,11 +7,11 @@
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 \section{Analysis of Saving and Loan Accounts Data}
-In this we will discuss about the work on a 1999 Czech Financial Data-set with real anonymized transactions \cite{19}. The aim was to learn the concept of ALM for banks and for that purpose we tried to simulate the ALM portfolio based on the given data set. As depicted in Figure 1.3 ALM Cycle of a Bank, the saving account deposits are the liability to the bank and the loans are assets for the bank. While neglecting all other parameters of the bank we are considering just deposits and loan to simulate the ALM concept.
+Here we will discuss about the work on a 1999 Czech Financial Data-set with real anonymized transactions \cite{19}. The aim was to learn the concept of ALM for banks and for that purpose we tried to simulate the ALM portfolio based on the given data set. As depicted in Figure 1.3 ALM Cycle of a Bank, the saving account deposits are the liability to the bank and the loans are assets for the bank. While neglecting all other parameters of the bank we are considering just deposits and loan to simulate the ALM concept.
 
 
 \section{Dataset Description}
-The dataset consists of 8 files in it, but we will be using only two namely transaction and loan. The description of both the files is as follows:
+The Czech Financial dataset consists of 8 files in it, but we will be using only two namely transaction and loan. The description of both the files is as follows:
 
 \begin{itemize}
 \item \textbf{Relational Transaction: }This file consist of 1056320 rows, where each row is a transaction to an account. The attributes of the transaction file are :
@@ -111,33 +111,34 @@ Mismatch[i] = Asset[i] - Withdrawal[i]
   \begin{center}
     \caption{Results of the ALM Simulation 1}
     \label{tab:Results of the ALM Simulation 1}
-    \begin{tabular}{l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+    \begin{tabular}{l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
       \hline
-      \textbf{\#Start} & \textbf{\#End} & \textbf{Liability}& \textbf{Withdrawal}& \textbf{Assets} \\
+     \textbf{B.N.}&\textbf{\#Start}&\textbf{\#End} &\textbf{Liability}&\textbf{Withdrawal}&\textbf{Assets}\\
 	\hdashline
 	\hdashline
-      1 & 1 & 3200 & 0  & 0 \\
+      Bucket\#1 & 1 & 1 & 3200 & 0 & 0 \\
 	\hline
-      2 &  7 & 28964 & 0 & 0\\
+      Bucket\#2 & 2 &  7 & 28964 & 0 & 0\\
 	\hline
-      8 & 14 & 268887 & 0 & 0 \\
+      Bucket\#3 & 8 & 14 & 268887 & 0 & 0 \\
 	\hline
-      15 & 28 & 296622 & 0 & 0 \\
+      Bucket\#4 & 15 & 28 & 296622 & 0 & 0 \\
 	\hline
-      29 & 90 & 5182037 & 1166308 & 0 \\
+      Bucket\#5 & 29 & 90 & 5182037 & 1166308 & 0 \\
 	\hline
-      91 & 180 & 10425204 & 13085553 & 0 \\
+      Bucket\#6 & 91 & 180 & 10425204 & 13085553 & 0 \\
 	\hline
-      181 & 365 & 24532470 & 64642130 & 2619276 \\
+      Bucket\#7 & 181 & 365 & 24532470 & 64642130 & 2619276 \\
 	\hline
-      366 & 1095 & 91889223 & 577121716 & 26724276 \\
+      Bucket\#8 & 366 & 1095 & 91889223 & 577121716 & 26724276 \\
 	\hline
-      1096 & 1825 & 197436280 & 1261537518 & 48700920 \\
+      Bucket\#9 & 1096 & 1825 & 197436280 & 1261537518 & 48700920 \\
 	\hline
-      1826 & 2179 & 109423887 & 832618418 & 25217268  \\
+      Bucket\#10 & 1826 & 2179 & 109423887 & 832618418 & 25217268  \\
 
 	\hdashline
 	\hdashline
+	\multicolumn{5}{l}{B.N. : Bucket Number} \\
 	\multicolumn{5}{l}{\#Start: Starting day of time bucket} \\
 	\multicolumn{5}{l}{\#End: Ending day of time bucket} \\
 	\multicolumn{5}{l}{Liability: Total amount deposited in each time bucket} \\
@@ -153,30 +154,30 @@ Mismatch[i] = Asset[i] - Withdrawal[i]
   \begin{center}
     \caption{Results of the ALM Simulation 2}
     \label{tab:Results of the ALM Simulation 2}
-    \begin{tabular}{l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+    \begin{tabular}{l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
       \hline
-      \textbf{\#Start} & \textbf{\#End} & \textbf{Mismatch}& \textbf{\% Mismatch}& \textbf{Cumulative \% Mismatch}\\
+      \textbf{B.N.} & \textbf{\#Start} & \textbf{\#End} & \textbf{Mismatch}& \textbf{\% Mismatch}& \textbf{Cumulative \% Mismatch}\\
 	\hdashline
 	\hdashline
-      1 & 1 &  -3200 & -100.00000 & -100.0000 \\
+	Bucket\#1 & 1 & 1 &  -3200 & -100.00000 & -100.0000 \\
 	\hline
-      2 &  7 & -28964 & -100.00000 & -200.0000  \\
+	Bucket\#2 & 2 &  7 & -28964 & -100.00000 & -200.0000  \\
 	\hline
-      8 & 14 & -268887 & -100.00000 & -300.0000  \\
+	Bucket\#3 & 8 & 14 & -268887 & -100.00000 & -300.0000  \\
 	\hline
-      15 & 28 & -296622 & -100.00000 & -400.0000  \\
+	Bucket\#4 & 15 & 28 & -296622 & -100.00000 & -400.0000  \\
 	\hline
-      29 & 90 & -5181863 & -99.99665 & -499.9966  \\
+	Bucket\#5 & 29 & 90 & -5181863 & -99.99665 & -499.9966  \\
 	\hline
-      91 & 180 & -10423808 & -99.98661 & -599.9833  \\
+	Bucket\#6 & 91 & 180 & -10423808 & -99.98661 & -599.9833  \\
 	\hline
-      181 & 365 & -21012942 & -85.65359 & -685.6368    \\
+	Bucket\#7 & 181 & 365 & -21012942 & -85.65359 & -685.6368    \\
 	\hline
-      366 & 1095 & -47153606 & -51.31571 & -736.9526    \\
+	Bucket\#8 & 366 & 1095 & -47153606 & -51.31571 & -736.9526    \\
 	\hline
-      1096 & 1825  -109674289 & -55.54921 & -792.5018   \\
+	Bucket\#9 & 1096 & 1825 & -109674289 & -55.54921 & -792.5018   \\
 	\hline
-      1826 & 2179 & -55699964 & -50.90293 & -843.4047  \\
+	Bucket\#10 & 1826 & 2179 & -55699964 & -50.90293 & -843.4047  \\
 
 	\hdashline
 	\hdashline

@@ -1,17 +1,31 @@
-For Deep Learning Concepts:\\
+{\bf For Deep Learning Concepts:}\\
 A: Recurrent layer of neurons\\
+w$_{i}$:  weight associated with the inputs in RNN\\
+w$_{o}$:  weight associated with the output of previous state in RNN\\
 X$_{t}$: input sequence\\
-h$_{t}$: output of the recurrent layer\\
-f$_{t}$ is the output of forget gate
+h$_{t}$: output of the t$^{th}$ recurrent layer\\
+f$_{t}$: is the output of forget gate\\
+i$_{t}$: is the output of input gate\\
 W$_{f}$: the weight associated with forget gate\\
+W$_{i}$: the weight associated with input gate\\
+W$_{o}$: the weight associated with output gate\\
+W$_{c}$: the weight associated with new candidate value for input gate\\
+$\tilde{I}_{t}$ : vector of new candidate values for input gate\\
 h$_{t-1}$: the previous state output\\
+C$_{t}$: Cell state\\
+o$_{t}$: output of the output gate\\
 X$_{t}$: the input to state t\\
 b$_{f}$: the bias term for forget get\\
+b$_{i}$: the bias term for input get\\
+b$_{o}$: the bias term for output get\\
+b$_{c}$: the bias term for candidate value for input gate\\
+e($\hat{y}_{t-1}$): Encoding of previous states output
+
 terms in []: reflects concatenation operation\\
 $\sigma$ : Sigmoid Function\\
 tanh : hyperbolic tan function\\
 
-For LPP Formulation:
+{\bf For LPP Formulation}:\\
 G: Gap value\\
 Y : Asset\\
 X: Liability\\
