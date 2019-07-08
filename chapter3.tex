@@ -6,12 +6,13 @@
 \titlespacing*{\paragraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
-
+%------------------------------------------------------------------------------------------------------------
 \section{LPP for Optimization of Assets}
 
 Linear Programming is the famous method used for the optimization of a given objective function and constraints. In this section we will use this method for the macro optimization of assets with respect to liabilities to ensure the liquidity risk. 
 
 %\subsection{Prior Work}
+%------------------------------------------------------------------------------------------------------------
 
 \section{Algorithm}
 The algorithm for the LPP optimization using simplex method is as follows:
@@ -74,7 +75,18 @@ New\_Value = Old\_Value - $\frac{Corresponding\_key\_column\_value *  correspond
 \end{algorithm}
 
 
+%------------------------------------------------------------------------------------------------------------
 \section{Illustration}
+
+The problem is as described in Figure 3.1:
+\begin{itemize}
+\item A1, A2,....A9 are the asset variables to be optimized.
+
+\item L1, L2,...L6 are the given liabilities.
+
+\item Interest rates on assets are given.
+
+\end{itemize}
 
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/LPP-Problem.jpg}	
@@ -82,15 +94,18 @@ New\_Value = Old\_Value - $\frac{Corresponding\_key\_column\_value *  correspond
 				\label{fig: LPP Problem Formulation in Excel}
 				\end{center}
 
+The solution to the problem is as follows: \\
+We have used the solver plugin for computation of the solution. The Assets column shows the Result and the maximized profit is shown in "Maximize Z".
+
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/LPP-Solution.jpg}	
 				\captionof{figure}{LPP Problem Solution in Excel}
 				\label{fig: LPP Problem Solution in Excel}
 				\end{center}
-
+%------------------------------------------------------------------------------------------------------------
 \section{Computational Complexity}
 The worst case complexity of Simplex Method is Exponential but in practice it's complexity is in polynomial time.
-
+%------------------------------------------------------------------------------------------------------------
 \section{Conclusion }
 In this chapter we have addressed the problem of liquidity risk management using single objective optimization method.
 

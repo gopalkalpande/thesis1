@@ -108,91 +108,52 @@ Mismatch[i] = Asset[i] - Withdrawal[i]
 
 
 \begin{table}[h!]
-  \begin{center}
-    \caption{Results of the ALM Simulation 1}
-    \label{tab:Results of the ALM Simulation 1}
-    \begin{tabular}{l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
-      \hline
-     \textbf{B.N.}&\textbf{\#Start}&\textbf{\#End} &\textbf{Liability}&\textbf{Withdrawal}&\textbf{Assets}\\
-	\hdashline
-	\hdashline
-      Bucket\#1 & 1 & 1 & 3200 & 0 & 0 \\
-	\hline
-      Bucket\#2 & 2 &  7 & 28964 & 0 & 0\\
-	\hline
-      Bucket\#3 & 8 & 14 & 268887 & 0 & 0 \\
-	\hline
-      Bucket\#4 & 15 & 28 & 296622 & 0 & 0 \\
-	\hline
-      Bucket\#5 & 29 & 90 & 5182037 & 1166308 & 0 \\
-	\hline
-      Bucket\#6 & 91 & 180 & 10425204 & 13085553 & 0 \\
-	\hline
-      Bucket\#7 & 181 & 365 & 24532470 & 64642130 & 2619276 \\
-	\hline
-      Bucket\#8 & 366 & 1095 & 91889223 & 577121716 & 26724276 \\
-	\hline
-      Bucket\#9 & 1096 & 1825 & 197436280 & 1261537518 & 48700920 \\
-	\hline
-      Bucket\#10 & 1826 & 2179 & 109423887 & 832618418 & 25217268  \\
-
-	\hdashline
-	\hdashline
-	\multicolumn{5}{l}{B.N. : Bucket Number} \\
-	\multicolumn{5}{l}{\#Start: Starting day of time bucket} \\
-	\multicolumn{5}{l}{\#End: Ending day of time bucket} \\
-	\multicolumn{5}{l}{Liability: Total amount deposited in each time bucket} \\
-	\multicolumn{5}{l}{Withdrawal: Total amount withdrawn from deposited amount in each time bucket} \\
-	\multicolumn{5}{l}{Assets: Total loan amount granted in each time bucket} \\
-	\hline
-    \end{tabular}
-  \end{center}
+\caption{Results of the ALM Simulation 1}
+\label{tab:Results of the ALM Simulation 1}
+\begin{tabular}{llllll}
+\hline
+\multicolumn{1}{|l|}{B.N.}                                 & \multicolumn{1}{l|}{\#Start}                           & \multicolumn{1}{l|}{\#End}                           & \multicolumn{1}{l|}{Liability}                           & \multicolumn{1}{l|}{Withdrawal}                          & \multicolumn{1}{l|}{Assets}                            \\ \hline
+\multicolumn{1}{|l|}{Bucket\#1}                            & \multicolumn{1}{l|}{1}                                 & \multicolumn{1}{l|}{1}                               & \multicolumn{1}{l|}{3200}                                & \multicolumn{1}{l|}{0}                                   & \multicolumn{1}{l|}{0}                                 \\ \hline
+\multicolumn{1}{|l|}{Bucket\#2}                            & \multicolumn{1}{l|}{2}                                 & \multicolumn{1}{l|}{7}                               & \multicolumn{1}{l|}{28964}                               & \multicolumn{1}{l|}{0}                                   & \multicolumn{1}{l|}{0}                                 \\ \hline
+\multicolumn{1}{|l|}{Bucket\#3}                            & \multicolumn{1}{l|}{8}                                 & \multicolumn{1}{l|}{14}                              & \multicolumn{1}{l|}{268887}                              & \multicolumn{1}{l|}{0}                                   & \multicolumn{1}{l|}{0}                                 \\ \hline
+\multicolumn{1}{|l|}{Bucket\#4}                            & \multicolumn{1}{l|}{15}                                & \multicolumn{1}{l|}{28}                              & \multicolumn{1}{l|}{296622}                              & \multicolumn{1}{l|}{0}                                   & \multicolumn{1}{l|}{0}                                 \\ \hline
+\multicolumn{1}{|l|}{Bucket\#5}                            & \multicolumn{1}{l|}{29}                                & \multicolumn{1}{l|}{90}                              & \multicolumn{1}{l|}{6348345}                             & \multicolumn{1}{l|}{1166308}                             & \multicolumn{1}{l|}{0}                                 \\ \hline
+\multicolumn{1}{|l|}{Bucket\#6}                            & \multicolumn{1}{l|}{91}                                & \multicolumn{1}{l|}{180}                             & \multicolumn{1}{l|}{23510757}                            & \multicolumn{1}{l|}{13085553}                            & \multicolumn{1}{l|}{0}                                 \\ \hline
+\multicolumn{1}{|l|}{Bucket\#7}                            & \multicolumn{1}{l|}{181}                               & \multicolumn{1}{l|}{265}                             & \multicolumn{1}{l|}{89174600}                            & \multicolumn{1}{l|}{64642130}                            & \multicolumn{1}{l|}{2619276}                           \\ \hline
+\multicolumn{1}{|l|}{Bucket\#8}                            & \multicolumn{1}{l|}{366}                               & \multicolumn{1}{l|}{1095}                            & \multicolumn{1}{l|}{669010939}                           & \multicolumn{1}{l|}{577121716}                           & \multicolumn{1}{l|}{26724276}                          \\ \hline
+\multicolumn{1}{|l|}{Bucket\#9}                            & \multicolumn{1}{l|}{1096}                              & \multicolumn{1}{l|}{1825}                            & \multicolumn{1}{l|}{1458973798}                          & \multicolumn{1}{l|}{1261537518}                          & \multicolumn{1}{l|}{48700920}                          \\ \hline
+\multicolumn{1}{|l|}{Bucket\#10}                           & \multicolumn{1}{l|}{1826}                              & \multicolumn{1}{l|}{2179}                            & \multicolumn{1}{l|}{942042305}                           & \multicolumn{1}{l|}{832618418}                           & \multicolumn{1}{l|}{25217268}                          \\ \hline
+\multicolumn{6}{l}{\begin{tabular}[c]{@{}l@{}}B.N. : Bucket Number\\ \#Start: Starting day of time bucket\\ \#End: Ending day of time bucket\\ Liability: Total amount deposited in each time bucket\\ Withdrawal: Total amount withdrawn from deposited amount in each time bucket\\ Assets: Total loan amount granted in each time bucket\end{tabular}}
+\end{tabular}
 \end{table}
 
 
 \begin{table}[h!]
-  \begin{center}
-    \caption{Results of the ALM Simulation 2}
+ \caption{Results of the ALM Simulation 2}
     \label{tab:Results of the ALM Simulation 2}
-    \begin{tabular}{l|l|l|l|l|l} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
-      \hline
-      \textbf{B.N.} & \textbf{\#Start} & \textbf{\#End} & \textbf{Mismatch}& \textbf{\% Mismatch}& \textbf{Cumulative \% Mismatch}\\
-	\hdashline
-	\hdashline
-	Bucket\#1 & 1 & 1 &  -3200 & -100.00000 & -100.0000 \\
-	\hline
-	Bucket\#2 & 2 &  7 & -28964 & -100.00000 & -200.0000  \\
-	\hline
-	Bucket\#3 & 8 & 14 & -268887 & -100.00000 & -300.0000  \\
-	\hline
-	Bucket\#4 & 15 & 28 & -296622 & -100.00000 & -400.0000  \\
-	\hline
-	Bucket\#5 & 29 & 90 & -5181863 & -99.99665 & -499.9966  \\
-	\hline
-	Bucket\#6 & 91 & 180 & -10423808 & -99.98661 & -599.9833  \\
-	\hline
-	Bucket\#7 & 181 & 365 & -21012942 & -85.65359 & -685.6368    \\
-	\hline
-	Bucket\#8 & 366 & 1095 & -47153606 & -51.31571 & -736.9526    \\
-	\hline
-	Bucket\#9 & 1096 & 1825 & -109674289 & -55.54921 & -792.5018   \\
-	\hline
-	Bucket\#10 & 1826 & 2179 & -55699964 & -50.90293 & -843.4047  \\
-
-	\hdashline
-	\hdashline
-	\multicolumn{5}{l}{Mismatch: Difference in assets and liabilities} \\
-	\multicolumn{5}{l}{\% Mismatch: Mismatch as \% to outflow i.e. liability} \\
-	\multicolumn{5}{l}{Cumulative \% Mismatch: Cumulative sum of \% Mismatch} \\
-	\hline
-    \end{tabular}
-  \end{center}
+\begin{tabular}{llllll}
+\hline
+\multicolumn{1}{|l|}{B.N.}         & \multicolumn{1}{l|}{\#Start}   & \multicolumn{1}{l|}{\#End}   & \multicolumn{1}{l|}{Mismatch}     & \multicolumn{1}{l|}{\% Mismatch}   & \multicolumn{1}{l|}{Cumulative \% Mismatch}  \\ \hline
+\multicolumn{1}{|l|}{Bucket\#1}    & \multicolumn{1}{l|}{1}         & \multicolumn{1}{l|}{1}       & \multicolumn{1}{l|}{3200}         & \multicolumn{1}{l|}{-100.00000}    & \multicolumn{1}{l|}{-100.0000}               \\ \hline
+\multicolumn{1}{|l|}{Bucket\#2}    & \multicolumn{1}{l|}{2}         & \multicolumn{1}{l|}{7}       & \multicolumn{1}{l|}{28964}        & \multicolumn{1}{l|}{-100.00000}    & \multicolumn{1}{l|}{-200.0000}               \\ \hline
+\multicolumn{1}{|l|}{Bucket\#3}    & \multicolumn{1}{l|}{8}         & \multicolumn{1}{l|}{14}      & \multicolumn{1}{l|}{268887}       & \multicolumn{1}{l|}{-100.00000}    & \multicolumn{1}{l|}{-300.0000}               \\ \hline
+\multicolumn{1}{|l|}{Bucket\#4}    & \multicolumn{1}{l|}{15}        & \multicolumn{1}{l|}{28}      & \multicolumn{1}{l|}{296622}       & \multicolumn{1}{l|}{-100.00000}    & \multicolumn{1}{l|}{-400.0000}               \\ \hline
+\multicolumn{1}{|l|}{Bucket\#5}    & \multicolumn{1}{l|}{29}        & \multicolumn{1}{l|}{90}      & \multicolumn{1}{l|}{6348345}      & \multicolumn{1}{l|}{-99.99665}     & \multicolumn{1}{l|}{-499.9966}               \\ \hline
+\multicolumn{1}{|l|}{Bucket\#6}    & \multicolumn{1}{l|}{91}        & \multicolumn{1}{l|}{180}     & \multicolumn{1}{l|}{23510757}     & \multicolumn{1}{l|}{-99.98661}     & \multicolumn{1}{l|}{-599.9833}               \\ \hline
+\multicolumn{1}{|l|}{Bucket\#7}    & \multicolumn{1}{l|}{181}       & \multicolumn{1}{l|}{265}     & \multicolumn{1}{l|}{89174600}     & \multicolumn{1}{l|}{-85.65359}     & \multicolumn{1}{l|}{-685.6368}               \\ \hline
+\multicolumn{1}{|l|}{Bucket\#8}    & \multicolumn{1}{l|}{366}       & \multicolumn{1}{l|}{1095}    & \multicolumn{1}{l|}{669010939}    & \multicolumn{1}{l|}{-51.31571}     & \multicolumn{1}{l|}{-736.9526}               \\ \hline
+\multicolumn{1}{|l|}{Bucket\#9}    & \multicolumn{1}{l|}{1096}      & \multicolumn{1}{l|}{1825}    & \multicolumn{1}{l|}{1458973798}   & \multicolumn{1}{l|}{-55.54921}     & \multicolumn{1}{l|}{-792.5018}               \\ \hline
+\multicolumn{1}{|l|}{Bucket\#10}   & \multicolumn{1}{l|}{1826}      & \multicolumn{1}{l|}{2179}    & \multicolumn{1}{l|}{942042305}    & \multicolumn{1}{l|}{-50.90293}     & \multicolumn{1}{l|}{-843.4047}               \\ \hline
+\multicolumn{6}{l}{\begin{tabular}[c]{@{}l@{}}Mismatch: Difference in assets and liabilities\\ \% Mismatch: Mismatch as \% to outflow i.e. liability\\ Cumulative \% Mismatch: Cumulative sum of \% Mismatch\end{tabular}}
+\end{tabular}
 \end{table}
 
+
+%----------------------------------------------
 \section{Analysis of the Results}
 
 As per the RBI guidelines the negative cumulative mismatch in the first four buckets should not exceed 5\%, 10\%, 15\% and 20\% of the cash outflow of the respective time bucket.
-Here a lot of parameters are from the ALM sheet are missing that's why the cumulative mismatch is not matching.\\
+Here a lot of parameters are from the ALM sheet are missing that's why the cumulative mismatch is exceeding the limits as shown in Table 2.2.\\
 
 Although the difference between the liability and the withdrawal column is significantly positive the customers are not withdrawing all the amount deposited in the account. This lead for us to investigate more on the data .
 
@@ -228,7 +189,7 @@ Here we have assumed the different window for the transaction amount and the fre
 
 The frequency density plot of the above table looks like this:
 				\begin{center}
-				\includegraphics[width=\linewidth]{figures/freq-density-plot.jpeg}	
+				\includegraphics[width=15cm,height=10cm]{figures/freq-density-plot.jpeg}	
 				\captionof{figure}{Frequency density plot of the Transaction Amount}
 				\label{fig: Frequency density plot of the Transaction Amount}
 				\end{center}
@@ -239,11 +200,34 @@ The plot seems to be following Pareto distribution, which means that 80\% of the
 				\captionof{figure}{The deposit and withdrawal plot for randomly chosen account number}
 				\label{fig: The deposit and withdrawal plot for randomly chosen account number}
 				\end{center}
-The plot shows that the mean amount deposited is maximum than mean amount withdrawal and the frequency of deposits is less than the frequency of withdrawal. But there were some cases where this condition failed. After analyzing such more plots we can say that there will always be some amount remaining in the account. The bank can focus on such customers and encourage them to invest in their various investment schemes, so that this money can be utilized as asset for some fixed duration of time.\\ 
+The plot shows that the mean amount deposited is maximum than mean amount withdrawal and the frequency of deposits is less than the frequency of withdrawal. But there were some cases where this condition failed. After analyzing such more plots we can say that there will always be some amount remaining in the account. \\ 
 The formula for finding the assets from each saving accounts can be given as:
 \begin{equation}
-Assets from Saving Account = \{Average Amount Deposited - Average Amount Withdrawal\}_{over given time bucket}
+ASA = \{AAD - AAW\}_{over given time bucket}
 \end{equation}
+Where,
+\begin{itemize}
+\item ASA: Assets from Saving Account
+\item AAD: Average Amount Deposited
+\item AAW: Average Amount Withdrawal
+\end{itemize}
+
+Using this formula for first 5 time buckets, we got following results:
+
+				\begin{center}
+				\includegraphics[width=15cm,height=10cm]{figures/asset-from-saving.jpg}	
+				\captionof{figure}{Average balance of randomly selected saving account}
+				\label{fig: Average balance of randomly selected saving account}
+				\end{center}
+Where,
+\begin{itemize}
+\item account\_nos: account number of customer
+\item acc\_depo\_mean: average amount deposited per account\_nos
+\item acc\_withd\_mean: average amount withdrawal per account\_nos
+\item differences: difference in acc\_depo\_mean and acc\_withd\_mean
+\end{itemize}
+
+The results above shows that there will be some amount always left in the account of customer. The bank can focus on such customers and encourage them to invest in their various investment schemes, so that this money can be utilized as asset for some fixed duration of time.
 
 \section{Conclusion}
 

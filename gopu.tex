@@ -31,6 +31,8 @@
 \usepackage{arydshln}
 \usepackage{titlesec}
 \usepackage[T1]{fontenc}
+\usepackage[title]{appendix}
+
 \DeclareUnicodeCharacter{0301}{\'{e}}
 
 
@@ -46,9 +48,9 @@
 \pagestyle{empty}
 \begin{titlepage}
 \thispagestyle{empty}
-    \title{\bfseries \Large Data Analysis and Optimization of Asset Liability Management Problem for Banks}
+    \title{\bfseries \Large Data Analysis and Optimization of ALM Problem}
     \author{A dissertation submitted to the University of Hyderabad\\in partial fulfillment of the degree of \\ \\
-    \bf \Large{Master of Technology}\\in\\ \bf \Large{Artificial Intelligence}\\ \\ By\\ \bf{Gopal Kalpande}\\ \bf{17MCMI10}\\ \\
+    \bf \Large{Master of Technology}\\in\\ \bf \Large{Artificial Intelligence}\\ \\ By\\ \bf{Gopal Kalpande}\\ \bf{17MCMI10}\\ 
     {\includegraphics[width=1.3in]{figures/uohyd.jpg}}
     \\School of Computer and Information Sciences
     \\University of Hyderabad
@@ -95,21 +97,16 @@
 	
 		\begin{dedication}
 			\thispagestyle{empty}
-			{{\bf My Parents}}
+			{{\bf Dear Matoshree}}
 		\end{dedication}
 	
 		\begin{acknowledgments}
 			\input{ack.tex}
 		\end{acknowledgments}
 
-		\begin{notations}
-			\input{notations.tex}
-		\end{notations}	
-
 		\begin{abstract}
 			\input{abstract.tex}
 		\end{abstract}
-	
 
 		\tableofcontents
 
@@ -117,8 +114,10 @@
 
 		\listoftables
 
+		\begin{notations}
+			\input{notations.tex}
+		\end{notations}	
 
-		
 	%	\notations	
 	
 	\end{frontmatter}
@@ -147,4 +146,11 @@
 	\addcontentsline{toc}{chapter}{Bibliography}
 	\input{bibliography.tex}
 	
+	\clearpage
+	\appendix
+	\chapter{Appendix}
+	\input{appendices1.tex}
+	
+	
+
 \end{document}

@@ -57,12 +57,66 @@ The data is collected prior from 2013 to 2018 for the historical stock price of 
 
 \end{algorithm}
 
+%-------------------------algo for forward propagation------------
+
+\begin{algorithm}[H]
+
+\caption{Forward Propagation}
+
+\begin{algorithmic}[1] 
+						
+\STATE Compute Vactor Product of Parameters and Input.
+
+\STATE Pass Output of step 1 to Activation Function.
+
+\STATE Repeat step 1 and 2 until we reach Linear Output Activation Function.
+
+\STATE Send the Predicted Value which we got as Output to Loss Function.
+
+\end{algorithmic}
+
+\end{algorithm}
+
+\begin{algorithm}[H]
+
+\caption{Compute Loss}
+
+\begin{algorithmic}[1] 
+						
+\STATE The Loss is Computed using Loss Function described above.
+
+\STATE The loss is computed using Predicted Output from step 4 of Algorithm 4 and Actual Output.
+
+\end{algorithmic}
+
+\end{algorithm}
+
+\begin{algorithm}[H]
+
+\caption{Back propagation}
+
+\begin{algorithmic}[1] 
+						
+\STATE Using Gradient computed in step 6 of Algorithm 4 update the parameters of the Output Layer.
+
+\STATE while(reach Input Layer from Output Layer):
+
+\STATE \tab Compute Gradients using chain rule.
+
+\STATE \tab Update the parameters in Backward Propagation.
+
+\end{algorithmic}
+
+\end{algorithm}
+
+
+
 \end{itemize}
 
 %-----------------------------------------------------------------------------------------------------------------------------
 \section{Illustration}
 %\paragraph{}
-The experimental setup was done in Google Colab, a facility provided by Google Inc. to students and researchers for training deep learning algorithms where they provide free GPU. The computational specification of Colab is as follows:
+The experimental setup was done in Google Colab, a facility provided by Google Inc. to students and researchers for training deep learning algorithms where they provide free GPU. The detailed setup is discussed in Appendix. The computational specification of Colab is as follows:
 \begin{itemize}
 \item CPU model name: Intel(R) Xeon(R) CPU @ 2.30GHz  
 \item No. of Processors : 2
@@ -137,8 +191,25 @@ The architecture of the model used for experimentation is as follows:
 %    \end{tabular}
 %  \end{center}
 %\end{table}
+%--------------------------------------------------------------------------------
+\section{Computational Complexity}
+
+Computational complexity of LSTM is O(Z),\\
+  where Z = 4 * \#IP * h + 4 * h$^{2}$ + 3 * h + h * \#OP , \\
+ \tab\#IP: Number of inputs\\
+ \tab\#h: Number of hidden layers\\
+ \tab\#OP: Number of outputs
+
+The total time taken by the model to train is 1 min 9 sec.
+%--------------------------------------------------------------------
 
 \section{Results}
+After training the LSTM model we have tested the model on unseen test data and the MSE is as follows:
+\begin{itemize}
+\item MSE on Train Data: 0.00128 MSE
+\item MSE on Test Data: 0.00230 MSE
+\end{itemize}
+ 
 
 
 %\end{itemize}
@@ -148,23 +219,11 @@ The architecture of the model used for experimentation is as follows:
 				\label{fig: Plot showing of Actual and Predicted values}
 				\end{center}
 
-%--------------------------------------------------------------------------------
-\section{Computational Complexity}
+The plot and the results shows that the predicted sequence by the model is trying to catch the actual sequence. As the MSE is very small our predictions are closer to the actual outputs.
 
-Computational complexity of LSTM is O(Z),\\
-  where Z = 4 * \#IP * h + 4 * h$^{2}$ + 3 * h + h * \#OP , \\
- \tab\#IP: Number of inputs\\
- \tab\#h: Number of hidden layers\\
- \tab\#OP: Number of outputs\\
 
-The total time taken by the model to train is 1min 9 sec.
 %--------------------------------------------------------------------------------
 \section{Comparative Analysis} 
-
-After training the LSTM model we have tested the model on unseen test data and the MSE is as follows:
-\begin{itemize}
-\item MSE on Train Data: 0.00128 MSE
-\item MSE on Test Data: 0.00230 MSE
 
 The predictions of ARIMA and Auto-ARIMA models were taken into consideration for comparison with predictions of LSTM model. 
 \begin{itemize}
@@ -176,7 +235,8 @@ The predictions of ARIMA and Auto-ARIMA models were taken into consideration for
 				\captionof{figure}{Comparison of Prediction between ARIMA, Auto-ARIMAl and LSTM Model with Actual Values}
 				\label{fig: Comparison of Prediction between ARIMA, Auto-ARIMAl  and LSTM Model with Actual Values}
 				\end{center}
-\end{itemize}
+
+The plot and the results shows that the ARIMA and Auto-ARIMA models are performing worst as compared to LSTM model.
 %--------------------------------------------------------------------------------
 \section{Conclusion }
 

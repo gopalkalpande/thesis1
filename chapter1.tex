@@ -96,7 +96,7 @@ The exposure of banks to these various risks and as the risks are also increasin
 	
 \section{Project Objectives}
 
-	To study the strategies to stabilize financial networks i.e. banks and to improve the profitability of them from various risks. 
+	To study the strategies to stabilize financial networks i.e. banks and to improve the profitability of them from various risks. The aim was to study the LPP optimization method and Deep Learning for finding the solution to risks associated with banking.
 
 \section{Problem Statement}
 
@@ -107,7 +107,7 @@ Simulation of the ALM concept for bank using the 1999 Czech Financial data set a
 
 	\subsection{Prediction of Stock Price}
 
-		The Prediction of Stock Price is a typical problem of time series and we use a deep learning based solution methodology for future price prediction.
+		The Prediction of Stock Price is a typical problem of time series and we use a deep learning based solution methodology for future stock price prediction.
 
 \section{Literature Survey}
 
@@ -148,8 +148,7 @@ Below are the existing algorithms which helps as basis for problems we are study
 		
 		\paragraph{Plotting the Rolling Statistics}
 
-			In this procedure, we visualize the moving average and/or moving variance by plotting it against time.
-
+			In this procedure, we visualize the moving average and/or moving variance by plotting it against time. The data in Figure 1.5 is used to plot the Figure 1.6. The functions used for computing the data and plotting the graph are in Appendices. 
 		\begin{center}
 		\includegraphics[width=\linewidth]{figures/Moving-Average-and-Moving-Variance.jpg}	
 		\captionof{figure}{ Moving Average and Moving Variance of the Closing Price with window size = 5}
@@ -300,7 +299,7 @@ Now let’s consider the Fig.4.3 which shows the activation function tanh in the
 	h_{t} = tanh (w_{i} * X_{t} + w_{o} * h_{t-1} + b)
 \end{equation}
 
-Using weights w$_{i}$ and w$_{o}$ we will learn about the sequenced input.
+Using weights w$_{i}$ and w$_{o}$ we will learn about the sequenced input. Here we are using tanh as activation function because to keep gradient in linear region of the activation function the second derivative of tanh function sustain for long range before going to zero, helping to learn about sequences.
 
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/The-repeating-module-in-a-standard-RNN.jpg}	
@@ -323,7 +322,7 @@ If the input sequences are small then the RNN is the best choice, but what if th
 
 \paragraph{Long Short Term Memory (LSTM)}
 
-The word LSTM \cite{12} can be interpreted as storing the Short information in the Memory for the Long Term. This happens due to the functional change in the cell of RNN. Instead of the single neuron function in the RNN, the LSTM has four neurons connected in a circuit creating three gates: input gate, forget gate and the output gate. Other than these gates there is a cell state which computes the update for the next state. The following are the notations that will be used to describe the architecture of the LSTM:
+The word LSTM \cite{12} can be interpreted as storing the Short information in the Memory for the Long Term. This happens due to the functional change in the cell of RNN. Instead of the single neuron function in the RNN, the LSTM has four neurons connected in a circuit creating three gates: input gate, forget gate and the output gate. Other than these gates there is a cell state which computes the update for the next state. The following are the notations that will be used to describe the architecture of the LSTM:\\
 
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/Notations.jpg}	
@@ -331,7 +330,7 @@ The word LSTM \cite{12} can be interpreted as storing the Short information in t
 				\label{fig: Notations}
 				\end{center}
 
-The comparison of RNN and LSTM is as follows:
+The comparison of RNN and LSTM is as follows:\\
 
 				\begin{center}
 				\includegraphics[width=\linewidth]{figures/Comparison-of-RNN-and-LSTM-Cells.jpg}	
@@ -344,9 +343,9 @@ The comparison of RNN and LSTM is as follows:
 The cell state decides how much of the original information from previous state is to be retained to the next state (Forget gate) and how much new information from the current state is to be added after forgetting the old information from the previous state (Input gate). It's like scaling and shifting operation. The information from the previous state is scaled between 0 to 1 and information from the current state is added (shifting).
 
 				\begin{center}
-				\includegraphics[width=\linewidth]{figures/Cell-State.jpg}	
-				\captionof{figure}{Cell State}
-				\label{fig: Cell State}
+				\includegraphics[width=\linewidth]{figures/fig-c-f-i-u.jpg}	
+				\captionof{figure}{Flow of input through various gates. (a) Cell State, (b) Forget gate, (c) Input Gate and (d) Update to New Cell State}
+				\label{fig: Flow of input through various gates. (a) Cell State, (b) Forget gate, (c) Input Gate and (d) Update to New Cell State}
 				\end{center}
 
 \subparagraph{Forget Gate}
@@ -358,11 +357,6 @@ Equation for forget gate:
 	f_{t} = \sigma (W_{f} . [h_{t-1}, X_{t}] + b_{f})	
 \end{equation}
 
-				\begin{center}
-				\includegraphics[width=\linewidth]{figures/Forget-gate.jpg}	
-				\captionof{figure}{Forget Gate}
-				\label{fig: Forget Gate}
-				\end{center}
 
 \subparagraph{Input Gate}
 
@@ -379,11 +373,6 @@ This gate decides how much information from the current state is to be added to 
 0 to 1 is the range of sigmoid function and -1 to1 is the range of tanh function which shifts the input accurately and creates the output of the input gate.
 %The sigmoid function ranges between 0 to 1 and tanh function ranges between -1 to 1 which shifts the input accurately and creates the output of the input gate.
 
-				\begin{center}
-				\includegraphics[width=\linewidth]{figures/Input-gate.jpg}	
-				\captionof{figure}{Input Gate}
-				\label{fig: Input Gate}
-				\end{center}
 
 \subparagraph{Updating Cell State}
 
@@ -392,12 +381,6 @@ The eq(2.8 to 2.10) computed the values for updating the cell state, now we just
 \begin{equation}
 		C_{t} = f_{t} * C_{t-1} + i_{t} * \tilde{I}_{t}
 \end{equation}
-
-				\begin{center}
-				\includegraphics[width=\linewidth]{figures/update-to-new-cell-state.jpg}	
-				\captionof{figure}{Update to new cell state}
-				\label{fig: Update to new cell state}
-				\end{center}
 
 
 \subparagraph{Output Gate}
@@ -413,12 +396,11 @@ Using sigmoid function on current states input and tanh function on the updated 
 \end{equation}
 
 				\begin{center}
-				\includegraphics[width=\linewidth]{figures/output-gate.jpg}	
+				\includegraphics[width=12cm,height=10cm]{figures/output-gate.jpg}	
 				\captionof{figure}{Output Gate}
 				\label{fig: Output Gate}
 				\end{center}
 
-The Fig. below shows the unfolded LSTM layer.
 
 For the understanding of the later equations let us consider the following equations:
 For RNN: \begin{equation} h_{t} = RNN(h_{t-1}, X_{t}) \end{equation}
@@ -471,4 +453,15 @@ V$_{attn}$, U, W: Parameters to be learned.
 
 
 \section{Overview of Project Report}
+
+The overview of the project report is as follows:\\
+The chapter 1 contains the overall introduction to the basics of thesis. In chapter 2, we have simulation of the ALM scenario for a bank using a data-set and some insights from the data-set. In chapter 3, we have used LPP method for the optimization of the assets. The chapter 4 contains implementation details and the results for the prediction of the stock price. The thesis ends with chapter 6 containing conclusion and future work.
+
+
+
+
+
+
+
+
 
